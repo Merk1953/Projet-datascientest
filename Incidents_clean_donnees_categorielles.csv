@@ -1,0 +1,320 @@
+IncidentGroup;StopCodeDescription;PropertyCategory;PropertyType;AddressQualifier;Postcode_district;IncGeo_BoroughCode;ProperCase;IncidentStationGround;FirstPumpArriving_DeployedFromStation
+Fire;Secondary Fire;Outdoor;Road surface/pavement ;In street outside gazetteer location;N9;E09000010;Enfield;Edmonton;Edmonton
+False Alarm;AFA;Dwelling;Domestic garden (vegetation not equipment) ;On land associated with building;UB10;E09000017;Hillingdon;Hillingdon;Hillingdon
+Special Service;Special Service;Road Vehicle;Cycle path/public footpath/bridleway ;Correct incident location;N7;E09000019;Islington;Holloway;Holloway
+;False alarm - Good intent;Outdoor Structure;Purpose Built Flats/Maisonettes - Up to 3 storeys ;On motorway / elevated road;NW5;E09000007;Camden;Kentish Town;Kentish Town
+;Primary Fire;Other Residential;Car ;In street remote from gazetteer location;SE3;E09000011;Greenwich;Lee Green;East Greenwich
+;False alarm - Malicious;Non Residential;Small refuse/rubbish container;Within same building;EC1V;E09000028;Southwark;Shoreditch;Clerkenwell
+;Chimney Fire;Aircraft;Student Hall of Residence ;In street close to gazetteer location;WC1B;E09000018;Hounslow;Soho;Euston
+;Late Call;Rail Vehicle;Converted Flat/Maisonette - Up to 2 storeys ;Nearby address - street not listed in gazetteer;SE5;E09000012;Hackney;Peckham;Peckham
+;;Boat;Loose refuse ;Open land/water - nearest gazetteer location;TW3;E09000001;City Of london;Heston;Feltham
+;;;Purpose Built Flats/Maisonettes - 4 to 9 storeys ;Nearby address - no building in street;E8;E09000006;Bromley;Homerton;Homerton
+;;;Park ;Railway land or rolling stock;EC1A;E09000024;Merton;Dowgate;Dowgate
+;;;Purpose Built Flats/Maisonettes - 10 or more storeys ;;SE26;E09000025;Newham;Beckenham;Beckenham
+;;;Hotel/motel ;;CR4;E09000022;Lambeth;Mitcham;Mitcham
+;;;House - single occupancy ;;WC2R;E09000026;Redbridge;Euston;Soho
+;;;Restaurant/cafe;;N1;E09000030;Tower Hamlets;East Ham;Plaistow
+;;;Other outdoor location ;;E6;E09000033;Westminster;Old Kent Road;Old Kent Road
+;;;Large refuse/rubbish container (eg skip/ paladin);;SE17;E09000008;Croydon;Brixton;Southwark
+;;;Museum ;;EC4A;E09000027;Richmond Upon thames;Tooting;Clapham
+;;;Department Store ;;SE1;E09000023;Lewisham;Hainault;Tooting
+;;;Post box ;;SW8;E09000014;Haringey;Poplar;Hainault
+;;;Converted Flat/Maisonettes - 3 or more storeys;;SW16;E09000004;Bexley;West Norwood;Poplar
+;;;Club/night club ;;IG6;E09000005;Brent;Plumstead;West Norwood
+;;;Self contained Sheltered Housing ;;E3;E09000002;Barking And dagenham;Croydon;Islington
+;;;Nursing/Care Home/Hospice;;SW2;E09000003;Barnet;Norbury;Croydon
+;;;Hostel (e.g. for homeless people) ;;WC2N;E09000031;Waltham Forest;Twickenham;Norbury
+;;;Nurses'/Doctors' accommodation ;;SE18;E09000032;Wandsworth;Deptford;Kingston
+;;;Shelter ;;CR9;E09000013;Hammersmith And fulham;Hornsey;Deptford
+;;;Licensed House in Multiple Occupation - Up to 2 storeys ;;TW11;E09000009;Ealing;Bexley;Hornsey
+;;;Multi-Storey car park;;E9;E09000021;Kingston Upon thames;Willesden;Bexley
+;;;Other bulk storage;;SE8;E09000020;Kensington And chelsea;Eltham;West Hampstead
+;;;Roadside furniture (eg lamp posts/ road signs/ telegraph poles/ speed cameras);;N6;E09000016;Havering;Dagenham;Sidcup
+;;;Monastery/convent ;;DA5;E09000029;Sutton;Stratford;Dagenham
+;;;Hospital ;;EC1M;E09000015;Harrow;Barnet;Stratford
+;;;Airport - terminal ;;WC1H;;;Addington;Barnet
+;;;Tenement Building ;;NW2;;;Finchley;Addington
+;;;Purpose built office ;;SE9;;;Ilford;Hendon
+;;;Local Government Office;;KT1;;;East Greenwich;Ilford
+;;;Other retail warehouse ;;RM8;;;Paddington;Paddington
+;;;Shopping Centre ;;E15;;;Leyton;Leyton
+;;;Single shop ;;SE20;;;Hayes;Hayes
+;;;Retirement/Old Persons Home;;EN5;;;North Kensington;North Kensington
+;;;Licensed House in Multiple Occupation - 3 or more storeys ;;CR0;;;Battersea;Battersea
+;;;Tree scrub ;;N3;;;Stoke Newington;Stoke Newington
+;;;Bridge;;IG1;;;Bethnal Green;Enfield
+;;;Grassland/ pasture/ grazing etc ;;WC2B;;;Enfield;Twickenham
+;;;Refuse/rubbish tip ;;W9;;;Woodside;Tottenham
+;;;Other medical establishment (including surgery) ;;E10;;;Tottenham;Hammersmith
+;;;Other road vehicle;;UB3;;;Hammersmith;Belsize
+;;;DIY Warehouse ;;W11;;;Plaistow;New Cross
+;;;Takeaway/ fast food ;;SW11;;;New Cross;Ruislip
+;;;Gym ;;N16;;;Ruislip;Shoreditch
+;;;Airport building (not terminal or hangar) ;;EN1;;;Ealing;Ealing
+;;;Bungalow - single occupancy ;;SE25;;;Mill Hill;Mill Hill
+;;;Sheltered Housing : not self contained ;;TW1;;;Heathrow;Eltham
+;;;Scrub land ;;N15;;;Woodford;Heathrow
+;;;Van ;;W14;;;Walthamstow;Woodford
+;;;Sports/Social club ;;W1H;;;Surbiton;Walthamstow
+;;;Boarding House/B&B for homeless/asylum seekers ;;NW3;;;Wandsworth;Surbiton
+;;;Converted office ;;SE7;;;Northolt;Wandsworth
+;;;Motorcycle ;;E13;;;Kensington;Northolt
+;;;Exhibition Centre ;;SE23;;;Harold Hill;Romford
+;;;Lorry/HGV ;;HA6;;;Southall;East Ham
+;;;Bank/Building Society ;;E2;;;Dockhead;Southall
+;;;College/University ;;W5;;;Lambeth;Dockhead
+;;;Bus/coach ;;HA8;;;Feltham;Bromley
+;;;Library ;;E18;;;Bromley;Orpington
+;;;Infant/Primary school;;E4;;;Romford;Park Royal
+;;;Police station ;;KT6;;;Kingston;Lambeth
+;;;Call Centre ;;SW15;;;Orpington;Hornchurch
+;;;Other office/call centre type building;;E17;;;Wembley;Wimbledon
+;;;Train station - elsewhere ;;RM10;;;Wimbledon;Woolwich
+;;;Pub/wine bar/bar ;;UB6;;;Southgate;Forest Hill
+;;;Health Centre ;;N13;;;Forest Hill;Willesden
+;;;Large supermarket ;;BR3;;;Whitechapel;Whitechapel
+;;;Other Residential Home ;;SE16;;;West Hampstead;Sutton
+;;;Theatre ;;RM3;;;Sutton;Barking
+;;;Factory ;;W6;;;Barking;Plumstead
+;;;Community centre/Hall ;;TW6;;;New Malden;New Malden
+;;;Football stadium ;;UB5;;;Harrow;Harrow
+;;;Printing works;;UB4;;;Hornchurch;Chelsea
+;;;Electricity power station ;;W12;;;Chelsea;Brixton
+;;;Unlicensed House in Multiple Occupation - Up to 2 storeys ;;SW13;;;Millwall;Millwall
+;;;Pipe or drain ;;TW13;;;Stanmore;Stanmore
+;;;Warehouse ;;BR1;;;Fulham;Fulham
+;;;Other outdoor structures ;;W1J;;;Acton;Lee Green
+;;;Leisure Centre ;;RM1;;;Lewisham;Acton
+;;;Hairdresser ;;KT2;;;Park Royal;Woodside
+;;;Other outdoor equipment/machinery ;;BR5;;;Clapham;Lewisham
+;;;Cemetery ;;WC1V;;;Erith;Erith
+;;;Art Gallery ;;HA9;;;Islington;Silvertown
+;;;Underground car park;;SW1V;;;Richmond;Richmond
+;;;Private Garden Shed ;;SW19;;;Shadwell;Kensington
+;;;Wasteland ;;W1C;;;Leytonstone;Westminster
+;;;Secondary school;;E1;;;Hendon;Shadwell
+;;;Roadside vegetation ;;SM4;;;Chingford;Leytonstone
+;;;Bingo Hall ;;EC2A;;;Greenwich;Finchley
+;;;Mill ;;NW6;;;Chiswick;Wembley
+;;;Train station - concourse ;;W2;;;Wallington;Bethnal Green
+;;;TV/film/music/art studio ;;SM2;;;Purley;Chingford
+;;;River/canal ;;W7;;;Sidcup;Kingsland
+;;;Other Dwelling ;;IG11;;;Biggin Hill;Greenwich
+;;;Bus/coach station/garage ;;NW8;;;Wennington;Bow
+;;;False Alarm - Property not found;;SE15;;;;Knightsbridge
+;;;Telephone box ;;HA5;;;;Chiswick
+;;;Fire station ;;RM14;;;;Southgate
+;;;Synagogue ;;E16;;;;Wallington
+;;;Furniture warehouse ;;SW3;;;;Downham
+;;;Conference Centre ;;E14;;;;Purley
+;;;Train station - platform (at ground level or elevated) ;;WC2H;;;;Heston
+;;;Town Hall ;;HA7;;;;Biggin Hill
+;;;Pre School/nursery ;;TW4;;;;Wennington
+;;;Law Courts ;;NW9;;;;Harold Hill
+;;;Cinema ;;WC1N;;;;Dartford
+;;;Airport - hangar ;;SW6;;;;
+;;;Multiple Vehicles ;;IG7;;;;
+;;;Swimming Pool ;;SW9;;;;
+;;;Other industrial processing plant;;HA2;;;;
+;;;Other retail  ;;NW7;;;;
+;;;Laboratory/research Establishment ;;SE22;;;;
+;;;Central Government Office;;SE21;;;;
+;;;Engineering manufacturing plant;;N11;;;;
+;;;Unlicensed House in Multiple Occupation - 3 or more storeys ;;SE13;;;;
+;;;Ice rink ;;N17;;;;
+;;;Other car park structure;;SE6;;;;
+;;;Other education establishment;;W3;;;;
+;;;Church/Chapel ;;TW12;;;;
+;;;Other public building ;;N8;;;;
+;;;Woodland/forest - broadleaf/hardwood ;;N4;;;;
+;;;Outdoor storage ;;IG2;;;;
+;;;Train station - platform (below ground) ;;TW14;;;;
+;;;Petrol station ;;W10;;;;
+;;;Other building/use not known ;;E7;;;;
+;;;Post office (purpose built) ;;NW10;;;;
+;;;Motor Home ;;CR2;;;;
+;;;Day care/Drop in centre;;SE4;;;;
+;;;Youth hostel ;;SE28;;;;
+;;;Laundrette ;;W1U;;;;
+;;;Public toilets ;;SE14;;;;
+;;;Recycling plant;;RM6;;;;
+;;;Cathedral ;;SW18;;;;
+;;;Children's Home;;N22;;;;
+;;;Other public utility works;;SW12;;;;
+;;;Other private non-residential building ;;SW4;;;;
+;;;Indoor Market ;;N19;;;;
+;;;Military/barracks ;;DA8;;;;
+;;;Cables ;;NW1;;;;
+;;;Heathland ;;E5;;;;
+;;;Other industrial manufacturing facility;;RM7;;;;
+;;;Other animal boarding/breeding establishment;;TW9;;;;
+;;;Casino ;;SW7;;;;
+;;;Lake/pond/reservoir ;;SW1P;;;;
+;;;Private garage ;;SE2;;;;
+;;;Post office (within other shop/premises) ;;HA1;;;;
+;;;Passenger plane ;;E11;;;;
+;;;Garden equipment ;;W15;;;;
+;;;Kiosk ;;SW5;;;;
+;;;Prison ;;EN3;;;;
+;;;Chemical plant;;UB1;;;;
+;;;Other outdoor sporting venue ;;EN2;;;;
+;;;House in Multiple Occupation - Up to 2 storeys (not known if licensed) ;;SE11;;;;
+;;;Estate Agent ;;UB2;;;;
+;;;Vehicle sales building;;IG8;;;;
+;;;Vehicle Repair Workshop;;SW1A;;;;
+;;;Sports pavilion/shower block/changing facility ;;E1W;;;;
+;;;Other indoor sporting venue ;;EC3A;;;;
+;;;Young offenders unit ;;SM5;;;;
+;;;Bulk waste storage;;N10;;;;
+;;;Ambulance station ;;WC2E;;;;
+;;;Manufacturing assembly plant;;HA3;;;;
+;;;House in Multiple Occupation - 3 or more storeys (not known if licensed);;IG3;;;;
+;;;Boarding School accommodation ;;SW17;;;;
+;;;Other transport building ;;SW1W;;;;
+;;;Other cultural venue ;;UB9;;;;
+;;;Railway ;;UB7;;;;
+;;;Other entertainment venue ;;W4;;;;
+;;;Gas works ;;W1T;;;;
+;;;Barbecue;;RM11;;;;
+;;;Trains - engine shed ;;EC1N;;;;
+;;;Sports Hall ;;N18;;;;
+;;;Tunnel/ subway ;;RM12;;;;
+;;;Train on Tube network;;IG5;;;;
+;;;Minibus ;;SW1X;;;;
+;;;Underground train : Other system ;;TW8;;;;
+;;;Temporary office (eg portacabin) ;;BR4;;;;
+;;;Temple ;;NW11;;;;
+;;;Other Religious Use Building;;CR5;;;;
+;;;Passenger Train (national rail network) ;;HA0;;;;
+;;;Recycling collection point/ bottle bank;;BR2;;;;
+;;;Nurseries/ market garden ;;W1F;;;;
+;;;Canal/riverbank vegetation ;;EC2V;;;;
+;;;Boarding House/B&B other ;;SE10;;;;
+;;;Mosque ;;DA14;;;;
+;;;Airport - fuel storage ;;N12;;;;
+;;;Electrical warehouse ;;SM1;;;;
+;;;Water works ;;TW10;;;;
+;;;Concert Hall ;;TW2;;;;
+;;;Railway building - other;;SW20;;;;
+;;;Bulk gas storage;;UB8;;;;
+;;;Animal products processing plant;;RM9;;;;
+;;;Tennis Courts ;;W8;;;;
+;;;Bulk oil storage;;SE12;;;;
+;;;Railings;;N2;;;;
+;;;Bulk hazardous materials storage;;CR7;;;;
+;;;Straw/stubble burning ;;EC3R;;;;
+;;;Airfield/runway ;;SW1Y;;;;
+;;;Caravan/Mobile home (permanent dwelling);;EC2Y;;;;
+;;;Woodland/forest - conifers/softwood ;;TN16;;;;
+;;;Railway trackside vegetation ;;EN4;;;;
+;;;Greyhound stadium ;;E12;;;;
+;;;Tractor Shed ;;RM13;;;;
+;;;Mine or quarry (not above ground building);;HA4;;;;
+;;;Towing caravan/Camper van on site;;W1D;;;;
+;;;Indoor stadium ;;W1G;;;;
+;;;Telephone exchange;;W1K;;;;
+;;;Docks ;;N20;;;;
+;;;Intensive Farming Sheds (chickens/ pigs etc) ;;CR8;;;;
+;;;Houseboat (permanent dwelling) ;;N5;;;;
+;;;Animal boarding/breeding establishment - dogs;;SM6;;;;
+;;;Railway goods yard ;;DA15;;;;
+;;;Rugby Stadium ;;TW5;;;;
+;;;Stacked/baled crop ;;NW4;;;;
+;;;Travel Agent ;;W1X;;;;
+;;;Theme Park ;;DA1;;;;
+;;;Private Summer house ;;TW7;;;;
+;;;Private greenhouse ;;RM4;;;;
+;;;Camping tent ;;KT5;;;;
+;;;Cricket ground ;;DA16;;;;
+;;;Other vessel ;;SE27;;;;
+;;;Agricultural vehicle;;N14;;;;
+;;;Beach ;;SE24;;;;
+;;;Landfill site ;;DA17;;;;
+;;;Zoo ;;DA7;;;;
+;;;Caravan on tow ;;WC1E;;;;
+;;;Standing crop ;;EC1R;;;;
+;;;Oil refinery ;;BR6;;;;
+;;;Other agricultural building ;;IG4;;;;
+;;;Agricultural equipment ;;EC1Y;;;;
+;;;Helicopter ;;W1S;;;;
+;;;Barge ;;EC3V;;;;
+;;;Motor yacht ;;SM3;;;;
+;;;Other aircraft;;WC2A;;;;
+;;;Light aircraft ;;W13;;;;
+;;;Road Tanker ;;W1W;;;;
+;;;Other holiday residence (cottage/ flat/ chalet) ;;SW1H;;;;
+;;;Milking Parlour ;;SW10;;;;
+;;;Boat - Tanker;;WC1X;;;;
+;;;Athletics Stadium ;;SE19;;;;
+;;;Barn ;;KT3;;;;
+;;;Sewage works ;;SW1E;;;;
+;;;Motor racing circuit ;;EC3N;;;;
+;;;Greenhouse (commercial) polytunnel ;;EC4Y;;;;
+;;;Other tent/marquee ;;EC4R;;;;
+;;;Tram ;;EC2N;;;;
+;;;Military helicopter ;;KT4;;;;
+;;;Large passenger vessel ;;SW14;;;;
+;;;Ferry terminal ;;EC2R;;;;
+;;;Common external bin storage area;;W1B;;;;
+;;;Animal boarding/breeding establishment - cats;;N21;;;;
+;;;Hedge;;KT9;;;;
+;;;Human harm outdoors;;EC4M;;;;
+;;;Fence;;EC4N;;;;
+;;;Medical/health centre;;EC2M;;;;
+;;;Bicycle;;BR7;;;;
+;;;Dental surgery;;DA6;;;;
+;;;Doctors surgery;;UB11;;;;
+;;;Ministry of Defence office;;EC4V;;;;
+;;;Golf clubhouse;;EC3M;;;;
+;;;Playground/Recreation area (not equipment);;WC1R;;;;
+;;;Food and drink processing;;DA18;;;;
+;;;Towing caravan (not on tow or on site);;KT8;;;;
+;;;Health spa/farm;;RM2;;;;
+;;;Trailer (not attached to tractor unit);;WC1A;;;;
+;;;Animal harm outdoors;;IG9;;;;
+;;;Distillery plant;;WC14;;;;
+;;;Veterinary surgery;;W1A;;;;
+;;;Bakery;;RM5;;;;
+;;;Greenhouse (commercial) glass ;;W1V;;;;
+;;;Stately Home (part not open to public);;EN8;;;;
+;;;Golf course (not building on course);;TW15;;;;
+;;;Royal Palace (part not open to public);;TN14;;;;
+;;;Mine or quarry building above ground;;EC3P;;;;
+;;;Freight Train ;;CR3;;;;
+;;;Racecourse ;;TW19;;;;
+;;;Wheelie bin (domestic size);;EC2P;;;;
+;;;Freight plane ;;EC47;;;;
+;;;Naval vessel ;;W1N;;;;
+;;;Castle (part not open to public);;WC2;;;;
+;;;Sea ;;BR8;;;;
+;;;Fishing boat ;;EN6;;;;
+;;;;;CM13;;;;
+;;;;;EC1;;;;
+;;;;;N1C;;;;
+;;;;;W17;;;;
+;;;;;CR6;;;;
+;;;;;E4A;;;;
+;;;;;KT17;;;;
+;;;;;EN7;;;;
+;;;;;SM7;;;;
+;;;;;EC17;;;;
+;;;;;CM14;;;;
+;;;;;SW99;;;;
+;;;;;RM15;;;;
+;;;;;W1M;;;;
+;;;;;KT18;;;;
+;;;;;W1;;;;
+;;;;;WD3;;;;
+;;;;;EC2;;;;
+;;;;;E98;;;;
+;;;;;E20;;;;
+;;;;;WD23;;;;
+;;;;;WD6;;;;
+;;;;;CR44;;;;
+;;;;;KT19;;;;
+;;;;;SE1P;;;;
+;;;;;KT22;;;;
+;;;;;SL3;;;;
+;;;;;SL0;;;;
+;;;;;TW16;;;;
+;;;;;RM19;;;;
