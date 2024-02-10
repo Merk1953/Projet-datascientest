@@ -152,8 +152,7 @@ En effet, si l’on met côte à côte les histogrammes des distributions des te
 
 La variable  _PumpHoursRoundUp_ qui est le temps passé sur les lieux de l'incident par les pompiers , (   60    89   119 ...  8408  5127 20219), indique des heures aberrantes parfois.  En effet, 89 n’est pas 
 l’arrondi à l’heure supérieure. On devrait avoir des multiples de 60 seulement. Celles-ci ont été retirées. 
-La variable IncidentStationGround  indique la station à laquelle la zone d’incident est rattachée. Il serait intéressant de la  mettre en lien avec la station qui est intervenue à savoir 
-_FirstPumpArriving_DeployedFromStation_. Les données sont disponibles ici dans l’onglet « Data » sous le nom _Cont Incident stat & 1st pump_.
+
 On constate que la plupart des zones des lieux d’incidents ainsi que la station d’intervention sont les mêmes. Dans le cas où d’autres stations interviennent dans des zones qui ne sont pas les leurs, 
 cela correspond aux stations secondaires venues en renfort. Cela conforte notre compréhension des variables.  
 Le croisement entre les variables _ResourceMobilisationId_ et _Resource_Code_ qui reprennent respectivement l’identifiant des ressources mobilisées et le code des ressources cependant 
