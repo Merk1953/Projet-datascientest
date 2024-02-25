@@ -397,4 +397,68 @@ Pour ce qui est des informations sur le mois et l'année d'intervention, on peut
 et on les ajoute comme caractéristiques distinctes. On peut également utiliser des techniques de codage cyclique pour les mois dans le cas où on voudrait exploiter la saisonnalité.
 Au final, on peut supposer a priori (cela sera vérifié ultérieurement) que quelle que soit la base que l’on crée, on aura un déficit d’information car : 
 -	L’option 1 prévoit une base avec pratiquement toutes les observations mais amputée des variables explicatives qui ont trop de valeurs manquantes. 
--	L’option 2 prévoit une base avec toutes les variables explicatives mais amputée des lignes qui ont des valeurs manquantes. 
+-	L’option 2 prévoit une base avec toutes les variables explicatives mais amputée des lignes qui ont des valeurs manquantes.
+
+
+## Hypothèses de modélisation 
+L'objectif de cette deuxième partie de rapport est d'offrir une analyse approfondie des résultats obtenus lors de la modélisation des temps d'intervention de la brigade des pompiers. Notre approche a englobé un processus rigoureux, débutant par un préprocessing des données et s'étendant jusqu'à l'utilisation de modèles sophistiqués de machine learning. Chaque étape a été étudiée pour garantir la robustesse et la fiabilité des résultats.
+
+Au début du processus de modélisation, sur les conseils du référent Datascientest, nous avons opté pour une approche prudente en testant des modèles naïfs afin d'établir une première compréhension du phénomène étudié. Ces modèles bien que délibérément simplistes, ont joué un rôle crucial en offrant une première perspective sur la dynamique des systèmes sous-jacents. Cette démarche visait à explorer différentes pistes et à identifier les variables clés* qui pourraient influencer le temps d’intervention des brigades de pompiers de Londres. Les modèles naïfs ont ainsi servi de boussole initiale, nous orientant vers les aspects les plus significatifs à approfondir et à intégrer dans des modèles plus sophistiqués par la suite. Cette phase exploratoire a contribué à jeter les bases d'une modélisation plus élaborée, guidant la sélection des variables à privilégier et permettant une meilleure compréhension des mécanismes sous-jacents.
+Les étapes pour nous conduire à la sélection du meilleur modèle sont les suivantes : 
+-	Entrainement de modèles naïfs pour ne conserver que les variables qui contribuent le plus au modèle 
+-	Réduction de la base aux variables utiles 
+-	Gridsearch CV sur plusieurs modèles linéaires et non linéaires sur le dataset nouvellement créé
+-	Sélection des meilleurs modèles 
+-	Optimisation bayésienne sur les modèles sélectionnés à l’étape précédente. 
+
+### Préparation et rappels 
+Pour rappel, un premier cleaning des NAs et des heures qui ne sont pas des multiples de 60 (d’après la notice de lecture fournie) des deux datasets a produit les résultats suivants : 
+Incidents
+-	Nombre de lignes : 1 287 593
+-	Nombre de colonnes : 21
+Mobilisations 
+-	Nombre de lignes : 2 227 677
+-	Nombre de colonnes : 19
+Ensuite, afin de pouvoir avoir une répartition géographique des interventions, nous avons éliminé toutes les lignes pour lesquelles la variable latitude n’était pas renseignée. Nous avons utilisé le dataset des incidents comme base de travail seulement filtré sur les heures non multiples de 60 et avons obtenu les résultats suivants : 
+-	Nombre de lignes : 726 790
+-	Nombre de colonnes : 38
+
+_*Pour rappel, les variables TravelTimeSeconds et AttendanceTimeSeconds ont été supprimées car elles sont des proxy de la variable à étudier. Les variables HourOfCall_y et CalYear_y qui proviennent de la table des Mobilisations ont également été supprimée car nous avons déjà ces données issues de la table des Incidents_
+
+Nous avons ensuite créé une base de travail en concaténant les deux datasets, à partir de la combinaison cleaning des NAs et heures non multiples de 60. 
+La table des Mobilisations contenait des doublons par rapport à la variable PumpOrder, i.e. le nombre de camions envoyés sur les lieux de l’incident. Comme beaucoup de champs de cette table n’ont pas été pris en compte, nous ne conservons que le max du nombre de camions envoyés
+
+Base de travail construite à partir du cleaning des NAs et des heures non multiples de 60 et des proxy et de la variable d’heure supplémentaire :
+-	Nombre de lignes : 1 237 733
+-	Nombre de colonnes : 38
+Après la suppression des variables redondantes, il reste 18 colonnes. Mais après dichotomisation et standardisation, on repasse à 222 colonnes.
+
+Cependant, les tests faits sur la base contenant ~ 1.2 millions de lignes n’aboutissent pas sur la machine utilisée pour les modèles de régression non linéaire. Une réduction de la base s’avère nécessaire pour ce périmètre. 
+Dans un premier temps, nous faisons un échantillon aléatoire permettant de réduire la base à 1 million de lignes sans succès. On passe à 500k en vain. Malheureusement, la puissance de la machine utilisée n’a permis de sortir des résultats que pour 10k lignes pour les modèles non linéaires. 
+Au-delà de ces échantillons, la machine mouline indéfiniment. Nous n’ignorons pas qu’il y a un biais concernant la comparaison des performances des modèles linéaires et non linéaires mais les ressources machines nous limitent dans nos recherches. 
+
+
+### Modèles étudiés 
+Les premiers modèles simples étudiés sont les suivants : 
+Nous avons pris d’un part des modèles non linéaires du fait des résultats produits lors de la data préparation. On choisit un nombre de permutations égal à 10 pour garder une robustesse des estimations pour voir des conclusions plus fiables.
+
+-	KNN : pour ce modèle, afin de connaître les contributions des variables, nous avons utilisé une permutation afin d’évaluer leur importance en mesurant comment le score du modèle change lorsque les valeurs d'une variable sont aléatoirement permutées. Cela implique de permuter les valeurs de chaque variable de manière aléatoire, recalculer les prédictions du modèle et mesurer comment cela affecte les performances du modèle (par exemple, le score R²). La différence entre les performances avant et après la permutation est utilisée comme mesure de l'importance de la variable. 
+-	Random Forest : même méthode 
+-	Decision tree : même méthode 
+-	Gradient Boosting : même méthode
+
+Nous n’avons pas pris de modèle SVM car trop coûteux en termes de ressource machine. Le modèle n'a jamais pu tourner.  
+
+Pour ce qui est des régressions linéaires, nous pourrions utiliser la même méthode. Cependant, les coefficients du modèle sont utilisés comme mesure de l’importance des variables. Ils indiquent déjà la contribution de chaque variable à la prédiction de la variable cible. 
+
+-	La régression linéaire : régression linéaire simple
+-	
+Les régressions Lasso et Ridge permettent de prévenir le surajustement et d’assurer la stabilité du modèle.
+
+-	La régression Lasso : elle intègre une pénalité de norme L1 ce qui peut conduire à une sélection des variables en faisant le split entre les variables qui ont une contribution nulle sur la prédiction du modèle et celles qui ont un impact significatif. 
+
+-	La régression Ridge : elle intègre une pénalité de norme L2 qui a tendance à réduire l’impact des variables les moins importantes plutôt que de les éliminer complètement. Le modèle Ridge est particulièrement utile lorsque les variables explicatives sont fortement corrélées entre elles, car il permet de stabiliser les coefficients et d'éviter une sensibilité excessive aux fluctuations dans les données. Etant donné les résultats obtenus en partie , nous supposons à l’avance que ce modèle ne sera pas d’une grande efficacité. 
+
+Les résultats obtenus sont les suivants : 
+
+
