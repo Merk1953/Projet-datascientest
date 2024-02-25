@@ -462,3 +462,18 @@ Les régressions Lasso et Ridge permettent de prévenir le surajustement et d’
 Les résultats obtenus sont les suivants : 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
