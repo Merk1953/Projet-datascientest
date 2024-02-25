@@ -452,7 +452,7 @@ Nous n’avons pas pris de modèle SVM car trop coûteux en termes de ressource 
 Pour ce qui est des régressions linéaires, nous pourrions utiliser la même méthode. Cependant, les coefficients du modèle sont utilisés comme mesure de l’importance des variables. Ils indiquent déjà la contribution de chaque variable à la prédiction de la variable cible. 
 
 -	La régression linéaire : régression linéaire simple
--	
+  
 Les régressions Lasso et Ridge permettent de prévenir le surajustement et d’assurer la stabilité du modèle.
 
 -	La régression Lasso : elle intègre une pénalité de norme L1 ce qui peut conduire à une sélection des variables en faisant le split entre les variables qui ont une contribution nulle sur la prédiction du modèle et celles qui ont un impact significatif. 
@@ -461,19 +461,109 @@ Les régressions Lasso et Ridge permettent de prévenir le surajustement et d’
 
 Les résultats obtenus sont les suivants : 
 
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/aaa2faea02d711c07dbb0220483fe64ce2a1c361/R%C3%A9sultats%20mod%C3%A8les/Resultats_modeles_naifs.pdf)
+
+
+**Il faut garder à l’esprit que les régressions linéaires et non linéaires ne sont pas réalisées sur des échantillons de tailles équivalentes.** 
+Aucun modèle non linéaire ne semble produire de bons résultats. Surapprentissage, R2 négatifs… 
+Pour ce qui est des modèles linéaires, ils semblent tous montrer les mêmes résultats. Le modèle Lasso est celui qui présente le moins de surapprentissage. Les R2 sont très bas mais le but de cette première étape de trouver les variables les plus contributives. Le modèle Lasso, de par la pénalité qu’il utilise nous permet de constater quelles sont les variables qui contribuent le plus au modèle et vont nous permettre in fine d’affiner nos travaux.  
+
+En nous fiant au modèle Lasso simple pour les régresseurs linéaires, on constate qu’en réalité, peu de variables (par rapport au nombre initial) contribuent au modèle : 
+
+
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/aaa2faea02d711c07dbb0220483fe64ce2a1c361/R%C3%A9sultats%20mod%C3%A8les/Contributions_variables.csv)
+
+
+## Réflexion 
+Les modèles dits naïfs ont servi de point de départ, offrant une compréhension initiale des relations linéaires et non linéaires entre les variables explicatives et les temps d'intervention. 
+Nous allons donc procéder à une optimisation approfondie des hyperparamètres, via le GridsearchCV  pour garantir la performance du modèle avec une réduction drastique des dimensions et ce sur tous les modèles précédemment écartés dans l’optique de trouver les meilleurs modèles pour résoudre notre problématique. La totalité de la base a été utilisée. 
 
 
 
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/aaa2faea02d711c07dbb0220483fe64ce2a1c361/R%C3%A9sultats%20mod%C3%A8les/Gridsearch.pdf)
 
 
+On constate que les 3 modèles produisent peu ou prou les mêmes résultats. modèles linéaires sont ceux qui fournissent les meilleurs résultats compte tenu des postulats de départ. 
+Nous allons donc procéder à une optimisation bayésienne sur ces derniers, avec les variables sélectionnées.  
 
 
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/aaa2faea02d711c07dbb0220483fe64ce2a1c361/R%C3%A9sultats%20mod%C3%A8les/Optimisation_bayesienne.pdf)
 
 
+Le constat montre que les performances des 3 modèles sont identiques. Une cross validation opérée entre les 3 modèles avec les hyperparamètres alpha optimaux n’a guère permis de faire la différence. 
+
+Régression Linéaire - Scores de validation croisée: [0.06869095 0.05452051 0.0522121  0.06098084 0.0585049 ]
+**Moyenne des scores: 0.05898186039981621**
+
+Lasso - Scores de validation croisée: [0.06844736 0.05438975 0.05231383 0.06112462 0.05859829]
+**Moyenne des scores: 0.05897477065676735**
+
+Ridge - Scores de validation croisée: [0.06869092 0.05452049 0.05221212 0.06098087 0.05850493]
+**Moyenne des scores: 0.0589818682672534** 
+
+Le seul critère de ségrégation serait celui du temps de traitement. Le modèle de régression linéaire simple est celui qui produit des résultats le plus rapidement. Il convient de rappeler que le dataset de départ a dû être amputé de beaucoup de variables et d’observations. En outre, les variables utilisées dans les modèles ne sont pas très parlantes en termes d’information orientée. 
+
+## Interprétabilité 
+
+Maintenant que le modèle de régression linéaire a été sélectionné, il convient de vérifier dans quelle mesure les variables ont contribué réellement au modèle en utilisant SHAP pour améliorer l’interprétabilité du modèle afin de comprendre comment chaque caractéristique contribue au modèle de manière équitable. 
+Ensuite, nous passerons au PDP pour voir comment la variation d’une caractéristique particulière influence le modèle tout en gardant les autres variables constantes afin de pouvoir visualiser les relations entre une variable spécifique et la sortie du modèle. 
+En effet, l'analyse des graphiques PDP constitue une composante essentielle dans l'interprétation des modèles prédictifs, en particulier dans le domaine de l'apprentissage automatique. Ces graphiques fournissent des insights significatifs sur la relation entre les variables d'entrée et la sortie du modèle, permettant ainsi de mieux comprendre le comportement global du modèle.
 
 
+### Shap 
+Il convient de regarder dans quelle mesure chaque ligne de notre set de données contribue à la prédictibilité du modèle. De ce fait, on utilisera la magnitude pour mesurer l'impact global de cette caractéristique sur la sortie du modèle, en tenant compte de toutes les observations dans l'ensemble de données.
+Si l’on veut prendre un exemple, la valeur SHAP associée à une modalité particulière d'une variable augmente, cela signifie que la présence ou l'augmentation de cette modalité a une contribution positive à la prédiction du modèle par rapport à la valeur moyenne de la variable cible. En d'autres termes, cette modalité est associée à une augmentation de la variable cible (dans notre cas, le temps d'intervention en secondes).
+
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/aaa2faea02d711c07dbb0220483fe64ce2a1c361/R%C3%A9sultats%20mod%C3%A8les/Resultats_magnitude_Shap.csv)
+
+Mis en parallèle avec le graphique des features importances (plus parlant): 
+
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/aaa2faea02d711c07dbb0220483fe64ce2a1c361/R%C3%A9sultats%20mod%C3%A8les/Graphe_contributions_Shap_1.pdf)
 
 
+**1.	TurnoutTimeSeconds (3,799,423.15)** :
+  •	Avec la magnitude SHAP la plus élevée, cette variable est la plus déterminante pour le modèle. Cela signifie que le temps écoulé depuis        l'appel jusqu'à l'arrivée de la brigade des pompiers est le facteur le plus significatif pour prédire le temps d'intervention.
+  
+**2.	PumpCount (3,745,790.27)** :
+  •	Cette variable a une magnitude SHAP très proche de celle de TurnoutTimeSeconds, ce qui indique qu'elle est également très influente dans       la prédiction du temps d'intervention. Le nombre de pompes utilisées pendant l'intervention semble avoir un impact significatif sur la         durée totale de l'intervention.
+  
+**3.	NumStationsWithPumpsAttending (2,454,214.28)** :
+  •	Bien que légèrement inférieure en magnitude par rapport à PumpCount, cette variable reste très importante dans la prédiction du temps          d'intervention. Elle suggère que le nombre de stations avec des pompes intervenantes est un facteur clé pour prédire la durée de       
+    l'intervention.
+    
+**4.	PumpOrder (2,319,695.67)** :
+  •	Cette variable a une magnitude SHAP élevée, mais légèrement inférieure à celle de NumStationsWithPumpsAttending. Cela implique que l'ordre 
+    dans lequel les pompes sont utilisées peut également avoir une influence significative sur le temps d'intervention.
+    
+**5.	Variables ProperCase et PropertyCategory** :
+  •	Ces variables ont des magnitudes SHAP variées mais toutes sont significatives. Cela suggère que la localisation géographique (ProperCase) 
+    et la catégorie de propriété (PropertyCategory) jouent un rôle important dans la prédiction du temps d'intervention des pompiers.
+    
+**6.	StopCodeDescription** :
+  •	Les différents types d'incidents ont également des magnitudes SHAP élevées, indiquant qu'ils sont des prédicteurs importants du temps   
+    d'intervention. Cela signifie que le type d'incident peut avoir une influence significative sur la durée de l'intervention.
+    
+**7.	PumpHoursRoundUp (7,155.64)** :
+  •	Cette variable a la magnitude SHAP la plus faible parmi toutes, mais elle reste significative. Cela pourrait indiquer que le nombre 
+    d'heures d'intervention (arrondi) a une influence moindre sur le temps d'intervention par rapport aux autres variables.
+    
+On peut conclure en disant que la caractéristique qui contribue le plus au modèle qui permet de prédire le temps d’intervention est le temps entre le moment où l’alerte arrive à la caserne et le moment où les pompiers partent. En effet, il semble logique que la caractéristique de temps de réponse influence considérablement le temps d’intervention. 
+Vient ensuite le nombre de pompes utilisées. En effet, plus il y a de pompes près du lieu d’incident,  plus grandes seront les chances de diminuer le temps d’intervention. Il y va de même pour le nombre de camions en service.
+Dans une moindre mesure, le nombre de stations contactées contribue également en ce sens que plus de stations seront contactées, plus grandes seront les chances de diminuer le temps d’intervention. 
+On peut également penser que le fait que la propriété soit non résidentielle fait qu’elle est située en centre-ville et qu’elle profite d’un plus grand maillage des casernes de pompiers. 
+Idem pour les quartiers. Parmi les quartiers conservés, la plupart sont des quartiers centraux autour de la Tamise à l’exception de 3 qui sont à la périphérie et vastes. 
+
+Une visualisation des Shap values pour un échantillon d'incidents permet de comprendre plus en détail le phénomène : 
+
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/aaa2faea02d711c07dbb0220483fe64ce2a1c361/R%C3%A9sultats%20mod%C3%A8les/Shap_sample.pdf)
 
 
+On constate que sur 5 échantillons, la variable _TurnOutTime_ contribue le plus en valeur absolue. Idem pour le nombre de pompes. Cela conforte la conclusion faite au niveau macro. En fait, toutes les autres variables se comportent comme dans le graphique précédent. 
 
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/aaa2faea02d711c07dbb0220483fe64ce2a1c361/R%C3%A9sultats%20mod%C3%A8les/Graphe_contributions_Shap_2.pdf)
+
+
+Pour faire écho à ce qui a été dit précédemment sur la variable _TurnOutTime_, on constate à quel point elle peut contribuer aussi bien à la hausse et à la baisse au temps d’intervention. A l’instar de _TurnOutTime_, le graphique montre la grande amplitude d’influence qu’a aussi la variable du nombre de pompes à l’intervention. Elle contribue très positivement et très négativement également. Cela signifie que la variable à expliquer est très sensible à cette dernière et rejoint le point évoqué sur la magnitude. 
+
+
+### PDP 
