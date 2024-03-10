@@ -233,21 +233,15 @@ On observe le même pattern entre les deux tables bien que les effectifs soient 
 
 #### Par mois 
 
-_Répartition du temps moyen d'intervention pie chart_
-
-
-![image](https://github.com/Ryma8905/Projet-datascientest/assets/156120862/0277b159-b552-41c9-a6ec-ce03326d6244)
-
 
 _Répartition du temps moyen d'intervention histogramme_
 
 ![image](https://github.com/Ryma8905/Projet-datascientest/assets/156120862/76ec3c9b-36cc-4583-b8be-9581fb80496d)
 
 
-On constate avec ces statistiques très simples que, en moyenne le temps d’intervention est quasi identique d’un mois sur l’autre et varie de 8.2 à  8.5%. 
 S’il n y avait pas eu les légendes, nous aurions pu croire que les éléments du pie chart étaient identiques. Une représentation en histogramme permet de mieux visualiser 
 les différences d’où l’importance de choisir la représentation graphique adéquate. 
-L’analyse des deux graphiques met en exergue une légère différence d’un mois sur l’autre. Un test statistique permettrait d’avoir une assise plus précise quant à ce constat. 
+L’analyse du deux graphique met en exergue une légère différence d’un mois sur l’autre. Un test statistique permettrait d’avoir une assise plus précise quant à ce constat. 
 Pour cela, nous allons procéder à un test anova. 
 L'ANOVA (Analyse de la variance) est une technique statistique utilisée pour analyser si les moyennes de trois groupes ou plus sont égales ou différentes dans le contexte de 
 plusieurs groupes ou conditions. C'est un outil précieux dans l'analyse des données pour répondre à des questions telles que "Y a-t-il une différence significative entre les groupes ?" 
@@ -291,30 +285,6 @@ _L'ANOVA montre qu'il existe une différence statistiquement significative entre
 Cela signifie que le temps d'intervention varie en fonction de l'heure de la journée. 
 On constate de visu, que le plus gros contingent d’appels a lieu de la fin de matinée jusqu’en fin de soirée. 
 
-
-### Stationnarité 
-
-Il est intéressant de tester la stationnarité de la base. Cependant, il est important de noter que la stationnarité n'est pas toujours nécessaire, en particulier pour des 
-analyses exploratoires ou des séries de données très courtes. Dans certains cas, des séries temporelles non stationnaires peuvent encore fournir des informations précieuses. 
-La vérification de la stationnarité dépend du contexte et des objectifs de l'analyse. Nous testons la stationnarité en avance de phase et cela sera analysé dans la deuxième partie du rapport. 
-Dans un premier temps, un ADF a été fait sur une base journalière. Les ressources mémoire étant limitées, le test n’a pas pu aboutir. Plusieurs options s’offraient à nous : 
-1.	Échantillonnage de données : cela permet de réduire la consommation de mémoire, mais l'échantillonnage peut introduire une certaine perte d'information.
-2.	Réduction de la fréquence : Si la série de données est journalière et que la mémoire est un problème, on agrége par mois. Cela réduit la taille des données à analyser.
-3.	Utilisation d'une infrastructure avec plus de mémoire
-4.	Optimisation des données : On peut essayer d'optimiser la série de données en réduisant le nombre de colonnes ou en supprimant les données inutiles, le cas échéant.
-5.	Traitement en blocs : Plutôt que de charger l'ensemble de la série en mémoire, on pourrait envisager de diviser la série en blocs plus petits et d'effectuer le test ADF sur
-    ces blocs de manière itérative.
-  	
-Nous avons choisi l’option 2 et avons obtenu les résultats suivants sur une fréquence mensuelle:
-
-Statistique ADF : -3.2185825321090786
-p-value : 0.018933933594991802
-
-Les séries stationnaires sont plus faciles à modéliser, car leurs propriétés statistiques restent constantes dans le temps. En effet, les propriétés statistiques, telles que la moyenne, 
-la variance et la corrélation, si elles restent constantes dans le temps permet que les conclusions des analyses statistiques demeurent valides à travers différentes périodes de temps. 
-En éliminant la tendance temporelle et la saisonnalité, la stationnarité permet de réduire le bruit dans les données. 
-De plus, cela facilite l'identification de relations et de modèles sous-jacents. De nombreux tests statistiques, y compris les tests d'hypothèse et les tests de causalité, supposent que 
-les données sont stationnaires. Si la stationnarité n'est pas vérifiée, les résultats de ces tests peuvent être biaisés ou incorrects.
 
 
 ### Analyse des types d’incidents, des temps d’intervention et de la localisation
@@ -461,7 +431,7 @@ Les régressions Lasso et Ridge permettent de prévenir le surajustement et d’
 
 Les résultats obtenus sont les suivants : 
 
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/aaa2faea02d711c07dbb0220483fe64ce2a1c361/R%C3%A9sultats%20mod%C3%A8les/Resultats_modeles_naifs.pdf)
+![image](Ryma8905/Projet-datascientest/Résultats modèles/Resultats_modeles_naifs.pdf)
 
 
 **Il faut garder à l’esprit que les régressions linéaires et non linéaires ne sont pas réalisées sur des échantillons de tailles équivalentes.** 
