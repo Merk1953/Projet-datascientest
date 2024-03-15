@@ -192,7 +192,7 @@ _Pour information, la ligne Ressource Mobilisation Id ne doit pas être prise en
 
 
 
-_Pairplot avec kde de la table des Incidents_ 
+_Pairplot de la table des Incidents_ 
 
 
 ![image](https://github.com/Ryma8905/Projet-datascientest/assets/156120862/133d6be2-c1f6-49da-b128-0b702cd189c3)
@@ -204,7 +204,7 @@ Pour les restes des variables en dehors des variables de temps, on observe à ch
 Au final, on constate la même chose que précédemment concernant les relations linéaires dans le carré inférieur droit de la matrice. 
 
 
-_Pairplot avec kde de la table des Mobilisations_ 
+_Pairplot de la table des Mobilisations_ 
 
 
 ![image](https://github.com/Ryma8905/Projet-datascientest/assets/156120862/3e077656-000d-4973-831f-84e90fd609b8)
@@ -234,14 +234,13 @@ On observe le même pattern entre les deux tables bien que les effectifs soient 
 #### Par mois 
 
 
-_Répartition du temps moyen d'intervention histogramme_
+_Répartition du temps moyen d'intervention_
 
 ![image](https://github.com/Ryma8905/Projet-datascientest/assets/156120862/76ec3c9b-36cc-4583-b8be-9581fb80496d)
 
 
-S’il n y avait pas eu les légendes, nous aurions pu croire que les éléments du pie chart étaient identiques. Une représentation en histogramme permet de mieux visualiser 
-les différences d’où l’importance de choisir la représentation graphique adéquate. 
-L’analyse du deux graphique met en exergue une légère différence d’un mois sur l’autre. Un test statistique permettrait d’avoir une assise plus précise quant à ce constat. 
+On constate avec ces statistiques très simples que, en moyenne le temps d’intervention est quasi identique d’un mois sur l’autre et varie de 8.2 à  8.5%.
+L’analyse du graphique met en exergue une légère différence d’un mois sur l’autre. Un test statistique permettrait d’avoir une assise plus précise quant à ce constat. 
 Pour cela, nous allons procéder à un test anova. 
 L'ANOVA (Analyse de la variance) est une technique statistique utilisée pour analyser si les moyennes de trois groupes ou plus sont égales ou différentes dans le contexte de 
 plusieurs groupes ou conditions. C'est un outil précieux dans l'analyse des données pour répondre à des questions telles que "Y a-t-il une différence significative entre les groupes ?" 
@@ -254,8 +253,7 @@ Les résultats sont les suivants avec une p value à 5%:
 _L'ANOVA montre qu'il existe une différence statistiquement significative entre les mois._
 
 Cela signifie que le temps d'intervention varie en fonction du mois de l'année ce qui confirme le constat précédent qui a été orienté par la représentation en histogramme. 
-Cela montre à quel point deux tests statistiques qui mènent aux mêmes conclusions à savoir qu’il y a des différences significatives entre les groupes peuvent avoir des représentations 
-graphiques soit qui contredisent le test, soit qui le confirment. 
+ 
 
 #### Par jour de la semaine 
 
@@ -365,9 +363,8 @@ en tant que variable numérique avec un encodage one-hot (binaire) afin que le m
 A mon sens il ne semble pas nécessaire de standardiser les coordonnées GPS étant donné qu’elles sont toutes localisées à Londres et sont dans une plage de valeur réduite. 
 Pour ce qui est des informations sur le mois et l'année d'intervention, on peut également les encoder pour les rendre utilisables. Par exemple, on extrait le mois et l'année de ces variables 
 et on les ajoute comme caractéristiques distinctes. On peut également utiliser des techniques de codage cyclique pour les mois dans le cas où on voudrait exploiter la saisonnalité.
-Au final, on peut supposer a priori (cela sera vérifié ultérieurement) que quelle que soit la base que l’on crée, on aura un déficit d’information car : 
--	L’option 1 prévoit une base avec pratiquement toutes les observations mais amputée des variables explicatives qui ont trop de valeurs manquantes. 
--	L’option 2 prévoit une base avec toutes les variables explicatives mais amputée des lignes qui ont des valeurs manquantes.
+Au final, on peut supposer a priori (cela sera vérifié ultérieurement) que l'on aura un déficit d’information car nous sommes 
+obligés d'amputer la base de beaucoup de variables explicatives car elles ont trop de valeurs manquantes.  
 
 
 ## Hypothèses de modélisation 
@@ -396,14 +393,14 @@ Ensuite, afin de pouvoir avoir une répartition géographique des interventions,
 _*Pour rappel, les variables TravelTimeSeconds et AttendanceTimeSeconds ont été supprimées car elles sont des proxy de la variable à étudier. Les variables HourOfCall_y et CalYear_y qui proviennent de la table des Mobilisations ont également été supprimée car nous avons déjà ces données issues de la table des Incidents_
 
 Nous avons ensuite créé une base de travail en concaténant les deux datasets, à partir de la combinaison cleaning des NAs et heures non multiples de 60. 
-La table des Mobilisations contenait des doublons par rapport à la variable PumpOrder, i.e. le nombre de camions envoyés sur les lieux de l’incident. Comme beaucoup de champs de cette table n’ont pas été pris en compte, nous ne conservons que le max du nombre de camions envoyés
+La table des Mobilisations contenait des doublons par rapport à la variable _PumpOrder_, i.e. le nombre de camions envoyés sur les lieux de l’incident. Comme beaucoup de champs de cette table n’ont pas été pris en compte, nous ne conservons que le max du nombre de camions envoyés
 
 Base de travail construite à partir du cleaning des NAs et des heures non multiples de 60 et des proxy et de la variable d’heure supplémentaire :
 -	Nombre de lignes : 1 237 733
 -	Nombre de colonnes : 38
 Après la suppression des variables redondantes, il reste 18 colonnes. Mais après dichotomisation et standardisation, on repasse à 222 colonnes.
 
-Cependant, les tests faits sur la base contenant ~ 1.2 millions de lignes n’aboutissent pas sur la machine utilisée pour les modèles de régression non linéaire. Une réduction de la base s’avère nécessaire pour ce périmètre. 
+Il convient de rappeler que les tests faits sur la base contenant ~ 1.2 millions de lignes n’aboutissent pas sur la machine utilisée pour les modèles de régression non linéaire. Une réduction de la base s’avère nécessaire pour ce périmètre. 
 Dans un premier temps, nous faisons un échantillon aléatoire permettant de réduire la base à 1 million de lignes sans succès. On passe à 500k en vain. Malheureusement, la puissance de la machine utilisée n’a permis de sortir des résultats que pour 10k lignes pour les modèles non linéaires. 
 Au-delà de ces échantillons, la machine mouline indéfiniment. Nous n’ignorons pas qu’il y a un biais concernant la comparaison des performances des modèles linéaires et non linéaires mais les ressources machines nous limitent dans nos recherches. 
 
@@ -431,7 +428,7 @@ Les régressions Lasso et Ridge permettent de prévenir le surajustement et d’
 
 Les résultats obtenus sont les suivants : 
 
-![image](Ryma8905/Projet-datascientest/Résultats modèles/Resultats_modeles_naifs.pdf)
+![image](https://github.com/Ryma8905/Projet-datascientest/assets/156120862/b9ae9a40-d88b-4586-b005-8904822858d0)
 
 
 **Il faut garder à l’esprit que les régressions linéaires et non linéaires ne sont pas réalisées sur des échantillons de tailles équivalentes.** 
@@ -441,7 +438,8 @@ Pour ce qui est des modèles linéaires, ils semblent tous montrer les mêmes r�
 En nous fiant au modèle Lasso simple pour les régresseurs linéaires, on constate qu’en réalité, peu de variables (par rapport au nombre initial) contribuent au modèle : 
 
 
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/aaa2faea02d711c07dbb0220483fe64ce2a1c361/R%C3%A9sultats%20mod%C3%A8les/Contributions_variables.csv)
+
+https://github.com/Ryma8905/Projet-datascientest/blob/fb1862b0f22f1c2b42decde54fef2cac5cdea03e/R%C3%A9sultats%20mod%C3%A8les/Contributions_variables.csv
 
 
 ## Réflexion 
