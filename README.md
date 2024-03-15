@@ -455,19 +455,19 @@ On constate que les 3 modèles produisent peu ou prou les mêmes résultats. mod
 Nous allons donc procéder à une optimisation bayésienne sur ces derniers, avec les variables sélectionnées.  
 
 
-![image]
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/655ca786cb919ee027bdc885520f53d0e647f3b7/R%C3%A9sultats_mod%C3%A8les/Optimisation%20bay%C3%A9sienne.png)
 
 
 Le constat montre que les performances des 3 modèles sont identiques. Une cross validation opérée entre les 3 modèles avec les hyperparamètres alpha optimaux n’a guère permis de faire la différence. 
 
-Régression Linéaire - Scores de validation croisée: [0.06869095 0.05452051 0.0522121  0.06098084 0.0585049 ]
-**Moyenne des scores: 0.05898186039981621**
+Régression Linéaire - Scores de validation croisée: [0.11237435 0.09124155 0.07112321 0.08179717 0.08109262]
+**Moyenne des scores: 0.08752578036176409**
 
-Lasso - Scores de validation croisée: [0.06844736 0.05438975 0.05231383 0.06112462 0.05859829]
-**Moyenne des scores: 0.05897477065676735**
+Lasso - Scores de validation croisée: [0.11235916 0.09123184 0.07113139 0.08180792 0.08109975]
+**Moyenne des scores: 0.08752601128969313**
 
-Ridge - Scores de validation croisée: [0.06869092 0.05452049 0.05221212 0.06098087 0.05850493]
-**Moyenne des scores: 0.0589818682672534** 
+Ridge - Scores de validation croisée: [0.11237435 0.09124155 0.07112321 0.08179717 0.08109262]
+**Moyenne des scores: 0.08752578036210472** 
 
 Le seul critère de ségrégation serait celui du temps de traitement. Le modèle de régression linéaire simple est celui qui produit des résultats le plus rapidement. Il convient de rappeler que le dataset de départ a dû être amputé de beaucoup de variables et d’observations. En outre, les variables utilisées dans les modèles ne sont pas très parlantes en termes d’information orientée. 
 
