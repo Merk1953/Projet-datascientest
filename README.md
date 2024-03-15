@@ -448,14 +448,14 @@ Nous allons donc procéder à une optimisation approfondie des hyperparamètres,
 
 
 
-![image]()
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/ea498526e119cc45002d074e0740fe3fe493874b/R%C3%A9sultats_mod%C3%A8les/Gridsearch.png)
 
 
 On constate que les 3 modèles produisent peu ou prou les mêmes résultats. modèles linéaires sont ceux qui fournissent les meilleurs résultats compte tenu des postulats de départ. 
 Nous allons donc procéder à une optimisation bayésienne sur ces derniers, avec les variables sélectionnées.  
 
 
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/aaa2faea02d711c07dbb0220483fe64ce2a1c361/R%C3%A9sultats%20mod%C3%A8les/Optimisation_bayesienne.pdf)
+![image]
 
 
 Le constat montre que les performances des 3 modèles sont identiques. Une cross validation opérée entre les 3 modèles avec les hyperparamètres alpha optimaux n’a guère permis de faire la différence. 
