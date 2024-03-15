@@ -428,9 +428,6 @@ Les régressions Lasso et Ridge permettent de prévenir le surajustement et d’
 
 Les résultats obtenus sont les suivants :
 
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/main/R%C3%A9sultats%20mod%C3%A8les/Resultats_modeles_naifs.csv)
-
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/45cc26fc92c6c2901f28db3e40b6bc6317e01100/R%C3%A9sultats%20mod%C3%A8les/Resultats_modeles_naifs.csv)
 
 ![image](https://github.com/Ryma8905/Projet-datascientest/assets/Résultats modèles/Resultats_modeles_naifs.csv)
 
