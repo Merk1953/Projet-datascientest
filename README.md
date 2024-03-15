@@ -448,7 +448,7 @@ Nous allons donc procéder à une optimisation approfondie des hyperparamètres,
 
 
 
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/aaa2faea02d711c07dbb0220483fe64ce2a1c361/R%C3%A9sultats%20mod%C3%A8les/Gridsearch.pdf)
+![image]()
 
 
 On constate que les 3 modèles produisent peu ou prou les mêmes résultats. modèles linéaires sont ceux qui fournissent les meilleurs résultats compte tenu des postulats de départ. 
