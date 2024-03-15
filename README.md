@@ -432,6 +432,8 @@ Les résultats obtenus sont les suivants :
 
 ![image](https://github.com/Ryma8905/Projet-datascientest/blob/45cc26fc92c6c2901f28db3e40b6bc6317e01100/R%C3%A9sultats%20mod%C3%A8les/Resultats_modeles_naifs.csv)
 
+![image](https://github.com/Ryma8905/Projet-datascientest/assets/Résultats modèles/Resultats_modeles_naifs.csv)
+
 **Il faut garder à l’esprit que les régressions linéaires et non linéaires ne sont pas réalisées sur des échantillons de tailles équivalentes.** 
 Aucun modèle non linéaire ne semble produire de bons résultats. Surapprentissage, R2 négatifs… 
 Pour ce qui est des modèles linéaires, ils semblent tous montrer les mêmes résultats. Le modèle Lasso est celui qui présente le moins de surapprentissage. Les R2 sont très bas mais le but de cette première étape de trouver les variables les plus contributives. Le modèle Lasso, de par la pénalité qu’il utilise nous permet de constater quelles sont les variables qui contribuent le plus au modèle et vont nous permettre in fine d’affiner nos travaux.  
