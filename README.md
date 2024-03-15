@@ -430,7 +430,7 @@ Les résultats obtenus sont les suivants :
 
 ![image](https://github.com/Ryma8905/Projet-datascientest/blob/main/R%C3%A9sultats%20mod%C3%A8les/Resultats_modeles_naifs.csv)
 
-
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/45cc26fc92c6c2901f28db3e40b6bc6317e01100/R%C3%A9sultats%20mod%C3%A8les/Resultats_modeles_naifs.csv)
 
 **Il faut garder à l’esprit que les régressions linéaires et non linéaires ne sont pas réalisées sur des échantillons de tailles équivalentes.** 
 Aucun modèle non linéaire ne semble produire de bons résultats. Surapprentissage, R2 négatifs… 
