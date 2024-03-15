@@ -426,9 +426,10 @@ Les régressions Lasso et Ridge permettent de prévenir le surajustement et d’
 
 -	La régression Ridge : elle intègre une pénalité de norme L2 qui a tendance à réduire l’impact des variables les moins importantes plutôt que de les éliminer complètement. Le modèle Ridge est particulièrement utile lorsque les variables explicatives sont fortement corrélées entre elles, car il permet de stabiliser les coefficients et d'éviter une sensibilité excessive aux fluctuations dans les données. Etant donné les résultats obtenus en partie , nous supposons à l’avance que ce modèle ne sera pas d’une grande efficacité. 
 
-Les résultats obtenus sont les suivants : 
+Les résultats obtenus sont les suivants :
 
-![image](https://github.com/Ryma8905/Projet-datascientest/assets/156120862/b9ae9a40-d88b-4586-b005-8904822858d0)
+![image](https://github.dev/Ryma8905/Projet-datascientest/blob/main/assets/Résultats modèles/Resultats_modeles_naifs.csv)
+
 
 
 **Il faut garder à l’esprit que les régressions linéaires et non linéaires ne sont pas réalisées sur des échantillons de tailles équivalentes.** 
