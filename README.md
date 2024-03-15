@@ -474,8 +474,6 @@ Le seul critère de ségrégation serait celui du temps de traitement. Le modèl
 ## Interprétabilité 
 
 Maintenant que le modèle de régression linéaire a été sélectionné, il convient de vérifier dans quelle mesure les variables ont contribué réellement au modèle en utilisant SHAP pour améliorer l’interprétabilité du modèle afin de comprendre comment chaque caractéristique contribue au modèle de manière équitable. 
-Ensuite, nous passerons au PDP pour voir comment la variation d’une caractéristique particulière influence le modèle tout en gardant les autres variables constantes afin de pouvoir visualiser les relations entre une variable spécifique et la sortie du modèle. 
-En effet, l'analyse des graphiques PDP constitue une composante essentielle dans l'interprétation des modèles prédictifs, en particulier dans le domaine de l'apprentissage automatique. Ces graphiques fournissent des insights significatifs sur la relation entre les variables d'entrée et la sortie du modèle, permettant ainsi de mieux comprendre le comportement global du modèle.
 
 
 ### Shap 
@@ -486,88 +484,84 @@ Si l’on veut prendre un exemple, la valeur SHAP associée à une modalité par
 
 Mis en parallèle avec le graphique des features importances (plus parlant): 
 
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/aaa2faea02d711c07dbb0220483fe64ce2a1c361/R%C3%A9sultats%20mod%C3%A8les/Graphe_contributions_Shap_1.pdf)
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/23abc160a0ce43d6b2ae91b77419087b52f67902/Temps%20moyen%20d'intervention/feature%20importances.png)
 
+**1. TurnoutTimeSeconds (3 799 423.15)**
+  - Avec la magnitude SHAP la plus élevée, cette variable est la plus déterminante pour le modèle. Cela signifie que le temps écoulé depuis l'appel jusqu'à l'arrivée de la brigade des pompiers est le facteur le plus significatif pour prédire le temps d'intervention.
 
-**1.	TurnoutTimeSeconds (3,799,423.15)** :
-  •	Avec la magnitude SHAP la plus élevée, cette variable est la plus déterminante pour le modèle. Cela signifie que le temps écoulé depuis        l'appel jusqu'à l'arrivée de la brigade des pompiers est le facteur le plus significatif pour prédire le temps d'intervention.
+**2. PumpCount (3 745 790.27)**
+  - Cette variable a une magnitude SHAP très proche de celle de TurnoutTimeSeconds, ce qui indique qu'elle est également très influente dans la prédiction du temps d'intervention. Le nombre de pompes utilisées pendant l'intervention semble avoir un impact significatif sur la durée totale de l'intervention.
   
-**2.	PumpCount (3,745,790.27)** :
-  •	Cette variable a une magnitude SHAP très proche de celle de TurnoutTimeSeconds, ce qui indique qu'elle est également très influente dans       la prédiction du temps d'intervention. Le nombre de pompes utilisées pendant l'intervention semble avoir un impact significatif sur la         durée totale de l'intervention.
-  
-**3.	NumStationsWithPumpsAttending (2,454,214.28)** :
-  •	Bien que légèrement inférieure en magnitude par rapport à PumpCount, cette variable reste très importante dans la prédiction du temps          d'intervention. Elle suggère que le nombre de stations avec des pompes intervenantes est un facteur clé pour prédire la durée de       
-    l'intervention.
-    
-**4.	PumpOrder (2,319,695.67)** :
-  •	Cette variable a une magnitude SHAP élevée, mais légèrement inférieure à celle de NumStationsWithPumpsAttending. Cela implique que l'ordre 
-    dans lequel les pompes sont utilisées peut également avoir une influence significative sur le temps d'intervention.
-    
-**5.	Variables ProperCase et PropertyCategory** :
-  •	Ces variables ont des magnitudes SHAP variées mais toutes sont significatives. Cela suggère que la localisation géographique (ProperCase) 
-    et la catégorie de propriété (PropertyCategory) jouent un rôle important dans la prédiction du temps d'intervention des pompiers.
-    
-**6.	StopCodeDescription** :
-  •	Les différents types d'incidents ont également des magnitudes SHAP élevées, indiquant qu'ils sont des prédicteurs importants du temps   
-    d'intervention. Cela signifie que le type d'incident peut avoir une influence significative sur la durée de l'intervention.
-    
-**7.	PumpHoursRoundUp (7,155.64)** :
-  •	Cette variable a la magnitude SHAP la plus faible parmi toutes, mais elle reste significative. Cela pourrait indiquer que le nombre 
-    d'heures d'intervention (arrondi) a une influence moindre sur le temps d'intervention par rapport aux autres variables.
-    
-On peut conclure en disant que la caractéristique qui contribue le plus au modèle qui permet de prédire le temps d’intervention est le temps entre le moment où l’alerte arrive à la caserne et le moment où les pompiers partent. En effet, il semble logique que la caractéristique de temps de réponse influence considérablement le temps d’intervention. 
-Vient ensuite le nombre de pompes utilisées. En effet, plus il y a de pompes près du lieu d’incident,  plus grandes seront les chances de diminuer le temps d’intervention. Il y va de même pour le nombre de camions en service.
-Dans une moindre mesure, le nombre de stations contactées contribue également en ce sens que plus de stations seront contactées, plus grandes seront les chances de diminuer le temps d’intervention. 
-On peut également penser que le fait que la propriété soit non résidentielle fait qu’elle est située en centre-ville et qu’elle profite d’un plus grand maillage des casernes de pompiers. 
-Idem pour les quartiers. Parmi les quartiers conservés, la plupart sont des quartiers centraux autour de la Tamise à l’exception de 3 qui sont à la périphérie et vastes. 
+**3. NumStationsWithPumpsAttending (2 454 214.28)**
+  - Bien que légèrement inférieure en magnitude par rapport à PumpCount, cette variable reste très importante dans la prédiction du temps d'intervention. Elle suggère que le nombre de stations avec des pompes intervenantes est un facteur clé pour prédire la durée de l'intervention.
 
-Une visualisation des Shap values pour un échantillon d'incidents permet de comprendre plus en détail le phénomène : 
+**4. PumpOrder (2 319 695.67)**
+  - Cette variable a une magnitude SHAP élevée, mais légèrement inférieure à celle de NumStationsWithPumpsAttending. Cela implique que l'ordre dans lequel les pompes sont utilisées peut également avoir une influence significative sur le temps d'intervention."),
+ **5. Variables ProperCase et PropertyCategory**
+  - Ces variables ont des magnitudes SHAP variées mais toutes sont significatives. Cela suggère que la localisation géographique (ProperCase) et la catégorie de propriété (PropertyCategory) jouent un rôle important dans la prédiction du temps d'intervention des pompiers."),
+**6. StopCodeDescription**
+  - Les différents types d'incidents ont également des magnitudes SHAP élevées, indiquant qu'ils sont des prédicteurs importants du temps d'intervention. Cela signifie que le type d'incident peut avoir une influence significative sur la durée de l'intervention."),
+ **7. PumpHoursRoundUp (7 155.64)**
+  - Cette variable a la magnitude SHAP la plus faible parmi toutes, mais elle reste significative. Cela pourrait indiquer que le nombre d'heures d'intervention (arrondi) a une influence moindre sur le temps d'intervention par rapport aux autres variables.
 
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/aaa2faea02d711c07dbb0220483fe64ce2a1c361/R%C3%A9sultats%20mod%C3%A8les/Shap_sample.pdf)
+    
+On peut conclure en disant que la caractéristique qui contribue le plus au modèle qui permet de prédire le temps d’intervention est le temps entre le moment où l’alerte arrive à la caserne et le moment où les pompiers partent. En effet, il semble logique que la caractéristiques de temps de réponse influence considérablement le temps d’intervention.
+
+Vient ensuite le nombre de pompes utilisées. En effet, plus il y a de pompes près du lieu d’incident,
+plus grandes seront les chances de diminuer le temps d’intervention. Il y va de même pour le nombre de camions en service.
+
+Dans une moindre mesure, le nombre de stations contactées contribue également en ce sens que plus de stations seront contactées, plus grandes seront les chances de diminuer le temps d’intervention.
+
+On peut également penser que le fait que la propriété soit non résidentielle fait qu’elle est située en centre-ville et qu’elle profite d’un plus grand maillage des casernes de pompiers.
+
+Idem pour les quartiers. Parmi les quartiers conservés, la plupart sont des quartiers centraux autour de la Tamise à l’exception de 3 qui sont à la périphérie et vastes.
 
 
-On constate que sur 5 échantillons, la variable _TurnOutTime_ contribue le plus en valeur absolue. Idem pour le nombre de pompes. Cela conforte la conclusion faite au niveau macro. En fait, toutes les autres variables se comportent comme dans le graphique précédent. 
-
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/aaa2faea02d711c07dbb0220483fe64ce2a1c361/R%C3%A9sultats%20mod%C3%A8les/Graphe_contributions_Shap_2.pdf)
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/23abc160a0ce43d6b2ae91b77419087b52f67902/Temps%20moyen%20d'intervention/feature%20importances%202%20.png)
 
 
 Pour faire écho à ce qui a été dit précédemment sur la variable _TurnOutTime_, on constate à quel point elle peut contribuer aussi bien à la hausse et à la baisse au temps d’intervention. A l’instar de _TurnOutTime_, le graphique montre la grande amplitude d’influence qu’a aussi la variable du nombre de pompes à l’intervention. Elle contribue très positivement et très négativement également. Cela signifie que la variable à expliquer est très sensible à cette dernière et rejoint le point évoqué sur la magnitude. 
 
 
-### PDP 
+Une visualisation des Shap values pour un échantillon d'incidents permet de comprendre plus en détail le phénomène : 
 
-Nous allons visualiser l'effet marginal d'une variable spécifique sur la prédiction du modèle tout en maintenant les autres variables constantes. Cette vue granulaire de la manière dont une caractéristique particulière influence les prédictions du modèle est particulièrement utile pour interpréter toutes sortes de modèles. Nous nous contenterons de le faire seulement sur les variables les plus signifactives et par groupe de variables. 
-
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/main/R%C3%A9sultats%20mod%C3%A8les/PDP/pdp_turnoutime.pdf)
-
-La ligne croissante suggère un effet positif entre le temps de réaction et le temps d'intervention, c’est-à-dire que lorsque la valeur de _TurnoutTime_ augmente, la prédiction du modèle a tendance à augmenter. 
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/23abc160a0ce43d6b2ae91b77419087b52f67902/Temps%20moyen%20d'intervention/feature%20importances%20sample.png)
 
 
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/main/R%C3%A9sultats%20mod%C3%A8les/PDP/pdp_numstationswithpumpsattending.pdf)
+On constate que sur 5 échantillons, la variable _TurnOutTime_ contribue le plus en valeur absolue. Idem pour le nombre de pompes. Cela conforte la conclusion faite au niveau macro. En fait, toutes les autres variables se comportent comme dans le graphique précédent. 
 
-Il y va de même pour le nombre de stations. 
-
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/main/R%C3%A9sultats%20mod%C3%A8les/PDP/pdp_pumpcount.pdf)
-
-A contrario, le nombre de pompes à proximité a tendance à faire baisser le temps d'intervention ce qui semble intuitif. 
-
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/main/R%C3%A9sultats%20mod%C3%A8les/PDP/pdp_stopcodedescription_afa.pdf)
-
-Idem pour le type d'incident _Fausse alarme_. Lorsque celle ci vaut 1, le temps d'intervention diminue ce qui semble logique. 
 
 
 ## Conclusion 
 
-Il convient de rappeler avant toute chose que la data quality des datasets pour construire le modèle final n’était pas très riche. En effet, beaucoup de variables redondantes et manquantes ont contribué à appauvrir l’information disponible pour construire un modèle robuste et fiable. 
+Il convient de rappeler avant toute chose que la data quality des datasets pour construire le modèle final n’était pas très riche. En effet, beaucoup de variables redondantes et manquantes ont contribué à appauvrir l’information disponible pour construire un modèle robuste et fiable.
 
-De plus, les dictionnaires de données ne fournissaient pas de définition claire et ferme et il a fallu aller ‘fouiller’, regarder les modalités de chaque variable afin d’essayer de comprendre et d’affiner un peu plus la définition des champs. 
+De plus, les dictionnaires de données ne fournissaient pas de définition claire et ferme et il a fallu aller ‘fouiller’, regarder les modalités de chaque variable afin d’essayer de comprendre et d’affiner un peu plus la définition des champs.
 
-La première partie du travail, la data préparation a permis d’émettre dès le début le postulat que le modèle ne serait pas très riche en ce sens que la suppression de beaucoup de champs et de lignes d’observations allaient amoindrir la robustesse du modèle. 
+La première partie du travail, la data préparation a permis d’émettre dès le début le postulat que le modèle ne serait pas très riche en ce sens que la suppression de beaucoup de champs et de lignes d’observations allaient amoindrir la robustesse du modèle.
 
-La seconde partie de l’étude a consisté à tâtonner avec des modèles naïfs en première intention afin d’avoir des pistes de réflexion et d’améliorer de proche en proche les modèles étudiés. 
+La seconde partie de l’étude a consisté à tâtonner avec des modèles naïfs en première intention afin d’avoir des pistes de réflexion et d’améliorer de proche en proche les modèles étudiés.
 
-En effet, les modèles ‘naïfs’ ont permis de voir la contribution des variables et d’éliminer celles qui ne participaient peu ou pas du tout au modèle. Le corollaire de cela est que la taille des datasets utilisés a pu être augmentée et ainsi améliorer la prédictibilité du modèle (toutes proportions gardées). 
+En effet, les modèles ‘naïfs’ ont permis de voir la contribution des variables et d’éliminer celles qui ne participaient peu ou pas du tout au modèle. Le corollaire de cela est que la taille des datasets utilisés a pu être augmentée et ainsi améliorer la prédictibilité du modèle (toutes proportions gardées).
 
-Un Gridsearch sur des modèles linéaires et non linéaires avec les variables préalablement sélectionnées a permis de conserver le modèle qui fournissait la meilleure combinaison en termes de minimisation de l’erreur, d’évitement du surapprentissage et d’augmentation de l’ajustement du modèle aux données. 
+Un Gridsearch sur des modèles linéaires et non linéaires avec les variables préalablement sélectionnées a permis de conserver deux modèles qui fournissaient la meilleure combinaison en termes de minimisation de l’erreur, d’évitement du surapprentissage et d’augmentation de l’ajustement du modèle aux données.
 
-C’est finalement un modèle linéaire (régression linéaire) qui a été sélectionné et a montré par le biais des magnitudes de SHAP que les contributions des variables au modèle étaient pour la plupart assez intuitives. 
+C’est finalement un modèle linéaire (Lasso) qui a été sélectionné et a montré par le biais des magnitudes de SHAP que les contributions des variables au modèle étaient pour la plupart assez intuitives.
+
+## Pistes de réflexion 
+
+Lors de l'analyse de données, il est courant de rencontrer des ensembles de données incomplets, incohérents ou mal renseignés. Ces données peuvent grandement affecter la performance et la fiabilité des modèles d'apprentissage automatique, rendant ainsi les prédictions peu parlantes ou peu fiables. Face à de telles situations, plusieurs pistes de réflexion peuvent être explorées pour améliorer la qualité des données et, par conséquent, des modèles.
+
+En tant que producteur de données, la qualité de l'information que vous fournissez est essentielle pour garantir la pertinence et la fiabilité de vos services. Face à des données de mauvaise qualité, plusieurs pistes de réflexion peuvent être envisagées :
+
+**1. Évaluation et Transparence** : Fournir une évaluation transparente de la qualité des données, en identifiant les lacunes et les erreurs, afin de maintenir la confiance des utilisateurs.
+
+**2. Amélioration des Processus de Collecte** : Réviser et améliorer les processus de collecte des données pour minimiser les erreurs et garantir leur exactitude dès le départ.
+
+**3. Formation et Sensibilisation** : Sensibiliser le personnel aux enjeux de qualité des données et fournir une formation appropriée sur les bonnes pratiques de collecte et de gestion des données.
+
+**4. Implémentation de Contrôles Qualité** : Mettre en place des contrôles qualité rigoureux tout au long du processus de collecte et de traitement des données pour détecter et corriger les erreurs rapidement.
+
+**5. Collaboration avec les Utilisateurs** : Impliquer activement les utilisateurs dans l'identification et la résolution des problèmes de qualité des données, en recueillant leurs commentaires et leurs suggestions d'amélioration.
+
+**6. Fourniture des Métadonnées** : Mettre à disposition des utilisateurs un dictionnaire de données clair et intelligible.
