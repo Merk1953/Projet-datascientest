@@ -484,7 +484,7 @@ Si l’on veut prendre un exemple, la valeur SHAP associée à une modalité par
 
 Mis en parallèle avec le graphique des features importances (plus parlant): 
 
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/23abc160a0ce43d6b2ae91b77419087b52f67902/Temps%20moyen%20d'intervention/feature%20importances.png)
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/ab31f3784a18f9c05f3442ae3ab9d5edacb848d6/R%C3%A9sultats_mod%C3%A8les/feature%20importances.png)
 
 **1. TurnoutTimeSeconds (3 799 423.15)**
   - Avec la magnitude SHAP la plus élevée, cette variable est la plus déterminante pour le modèle. Cela signifie que le temps écoulé depuis l'appel jusqu'à l'arrivée de la brigade des pompiers est le facteur le plus significatif pour prédire le temps d'intervention.
@@ -517,7 +517,7 @@ On peut également penser que le fait que la propriété soit non résidentielle
 Idem pour les quartiers. Parmi les quartiers conservés, la plupart sont des quartiers centraux autour de la Tamise à l’exception de 3 qui sont à la périphérie et vastes.
 
 
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/23abc160a0ce43d6b2ae91b77419087b52f67902/Temps%20moyen%20d'intervention/feature%20importances%202%20.png)
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/ab31f3784a18f9c05f3442ae3ab9d5edacb848d6/R%C3%A9sultats_mod%C3%A8les/feature%20importances%202%20.png)
 
 
 Pour faire écho à ce qui a été dit précédemment sur la variable _TurnOutTime_, on constate à quel point elle peut contribuer aussi bien à la hausse et à la baisse au temps d’intervention. A l’instar de _TurnOutTime_, le graphique montre la grande amplitude d’influence qu’a aussi la variable du nombre de pompes à l’intervention. Elle contribue très positivement et très négativement également. Cela signifie que la variable à expliquer est très sensible à cette dernière et rejoint le point évoqué sur la magnitude. 
