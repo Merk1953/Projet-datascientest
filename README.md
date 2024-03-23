@@ -9,7 +9,7 @@ Ce projet de recherche vous invite à explorer l'essentiel des temps de réponse
 La brigade des pompiers de Londres, comme mentionné dans la fiche projet est l’une des plus grandes au monde. 
 Dans le cadre de notre projet de recherche, nous devrons estimer et analyser les temps de réponse et d’intervention de la brigade. 
 Les sources de données utilisées pour répondre à cette problématique proviennent du site ‘London Datastore’ et sont rafraichies sur une base mensuelle. 
-Elles fournissent le détail des incidents traités depuis janvier 2009. 
+Elles fournissent le détail des incidents traités depuis janvier 2009 et arrêtées à juillet 2023. 
 
 ## Objectif 
 L’objectif premier de cette étude est de comprendre et d’améliorer le temps de réponse et de mobilisation de la Brigade des Pompiers de Londres. Ces données revêtent une
@@ -103,12 +103,12 @@ _Groupe des variables avec pourcentage de NA supérieur à 50%_
 1.	On constate que la variable Easting_m a environ 50% de valeurs manquantes et la variable Easting_rounded qui est construite sur la première n’a quant à elle aucune valeur manquante.
     Cela semble incohérent si l’on se fie au dictionnaire des données. 
 2.	En ce qui concerne les variables pour lesquelles il y a trop de valeurs manquantes (> 40%), celles-ci sont inexploitables. Calculer une moyenne ou un mode sur la moitié (voire moins)
-    du jeu de données ne sera pas représentatif et on ne pourra pas remplacer les valeurs manquantes avec cela. On pensera dans un premier temps à les supprimer du jeu de données. 
-3.	Les lignes pour lesquelles il y a peu de valeurs manquantes seront supprimées.
+    du jeu de données ne sera pas représentatif et on ne pourra pas remplacer les valeurs manquantes avec cela. Il convient donc de les supprimer du jeu de données. 
+3.	Les lignes pour lesquelles il y a des valeurs manquantes seront supprimées (peu nombreuses).
    
 Cependant, le fait qu’il y ait des NAs n’est pas la seule raison pour laquelle on se délesterait de certaines variables. En effet, parfois certaines variables sont redondantes. Elles apportent 
-le même type d’information donc il convient de supprimer certaines. Par exemple, il y a beaucoup de variables qui concernent la localisation et avoir un tel niveau de détail n’est pas forcément 
-nécessaire. Les zones ou districts sont suffisants. 
+le même type d’information donc il convient de s'en débarrasser. Par exemple, il y a beaucoup de variables qui concernent la localisation et avoir un tel niveau de détail n’est pas forcément 
+nécessaire. Les zones ou districts sont suffisants.  
 
 Voici donc un tableau récapitulatif qui reprend la liste des variables dont on se sépare et en détaille les raisons : 
 
@@ -150,8 +150,8 @@ En effet, si l’on met côte à côte les histogrammes des distributions des te
 ![image](https://github.com/Ryma8905/Projet-datascientest/assets/156120862/068f8aca-9fc9-4246-b485-5b1fc72b38cb)
 
 
-La variable  _PumpHoursRoundUp_ qui est le temps passé sur les lieux de l'incident par les pompiers , (   60    89   119 ...  8408  5127 20219), indique des heures aberrantes parfois.  En effet, 89 n’est pas 
-l’arrondi à l’heure supérieure. On devrait avoir des multiples de 60 seulement. Celles-ci ont été retirées. 
+La variable  _PumpHoursRoundUp_ qui est le temps passé sur les lieux de l'incident par les pompiers , (60    89   119 ...  8408  5127 20219), indique des heures aberrantes parfois.  En effet, 89 n’est pas 
+l’arrondi à l’heure supérieure (comme spécifié dans le dictionnaire des métadonnées). On devrait avoir des multiples de 60 seulement. Celles-ci ont été retirées. 
 
 On constate que la plupart des zones des lieux d’incidents ainsi que la station d’intervention sont les mêmes. Dans le cas où d’autres stations interviennent dans des zones qui ne sont pas les leurs, 
 cela correspond aux stations secondaires venues en renfort. Cela conforte notre compréhension des variables.  
@@ -159,7 +159,7 @@ Le croisement entre les variables _ResourceMobilisationId_ et _Resource_Code_ qu
 l’espace mémoire de la machine est limité.
  
 Le croisement entre les variables _NumStationsWithPumpsAttending_, les heures et dates ainsi que _PumpCount_ nous permet de comprendre la différence entre les deux variables. 
-La première représente le nombre de stations qui sont intervenues sur l’incident tandis que _PumpCount_ nous renseigne sur le nombre de camions de pompiers effectivement sur place. 
+La première représente le nombre de stations qui ont été mobilisées sur l’incident tandis que _PumpCount_ nous renseigne sur le nombre pompes à incendie utilisées. 
 Pour aller plus loin dans le croisement de variables, la mesure de corrélation entre celles-ci peut également nous permettre de comprendre les interactions potentielles entre les variables 
 et in fine nous mettre sur la piste des variables à privilégier. 
  
@@ -169,10 +169,13 @@ _Corrélation entre les variables quantitatives de la table des Incidents_
 ![image](https://github.com/Ryma8905/Projet-datascientest/assets/156120862/ba2fe2d8-749d-425e-9da8-d64037ebb48a)
 
 
-On constate une zone de corrélation forte dans le carré bas et à droite entre le nombre de camions en intervention, le nombre total de camions, le _PumpHoursRoundUp_ et le _Notional Cost_. 
+On constate une zone de corrélation forte dans le carré bas et à droite entre le nombre de pompes à incendies utilisées, le _PumpHoursRoundUp_ et le _Notional Cost_. 
 Ces variables forment un cluster et pourraient par exemple être traitées ensemble. Entre le _PumpHoursRoundUp_ et le _Notional Cost_, la corrélation est proche de 1 ce qui est normal car ils ont une 
 relation de type aX. 
-Il semble y avoir une corrélation nulle dans le reste du carré ce qui indique une absence de relation linéaire entre les variables. On peut donc postuler que ces variables sont indépendantes 
+
+Au final, il semble que toutes les variables qui incluent la notion de pompe à incendie présentent une forte corrélation entre elles. 
+
+Par ailleurs, on constate une corrélation nulle dans le reste du carré ce qui indique une absence de relation linéaire entre les variables. On peut donc postuler que ces variables sont indépendantes 
 les unes des autres. La question se pose maintenant sur la sélection des variables, i.e. si nous allons choisir seulement les variables qui ont une corrélation significative avec la variable cible. 
 
 
@@ -185,8 +188,8 @@ _Corrélation entre les variables quantitatives de la table des Mobilisations_
 Comme remarqué précédemment, il y a une très forte corrélation entre le temps de trajet et le temps d’intervention. On pourra donc s’intéresser de près à tout ce qui pourrait impacter 
 le temps de trajet notamment les raisons de retard ou encore si les adresses étaient bonnes ou non. 
 Pour aller au-delà de la visualisation en heatmap et nous permettre de valider nos constatations, nous avons choisi de les confirmer avec un graphique pairplot. 
-On a là un outil puissant pour explorer et visualiser les données multidimensionnelles. On peut alors repérer des tendances, des relations, des distributions, des anomalies et 
-d'autres caractéristiques importantes des données, ce qui en fait un point de départ précieux pour l'analyse exploratoire des données.	 
+On a là un outil puissant pour explorer et visualiser la répartition des données. On peut alors repérer des tendances, des relations, des distributions, des anomalies et 
+d'autres caractéristiques importantes des données là où une analyse de corrélation ne fournit qu'une seule information. Cela en fait un point de départ précieux pour l'analyse exploratoire des données.	 
 
 _Pour information, la ligne Ressource Mobilisation Id ne doit pas être prise en compte car il s’agit de modalités et non de variables quantitatives._
 
@@ -197,11 +200,11 @@ _Pairplot de la table des Incidents_
 
 ![image](https://github.com/Ryma8905/Projet-datascientest/assets/156120862/133d6be2-c1f6-49da-b128-0b702cd189c3)
 
+Comme précédemment, on observe dans le carré droit en bas une relation linéaire entre les variables. Il s'agit toujours des variables qui incluent la notion de pompe à incendie. 
 
-Aucune des variables ne présente de leptukurtose  => il y a certes des variables pour lesquelles on observe des pics droits, mais il n y a pas de valeurs extrêmes. De la même façon, on ne peut affirmer 
-que les données sont platykurtiques  car les formes des cloches ne sont pas moins aplaties que celle d’une variable normale et les valeurs ne sont pas forcément plus dispersées.
-Pour les restes des variables en dehors des variables de temps, on observe à chaque fois des concentrations vers le coin gauche bas du graphique. 
-Au final, on constate la même chose que précédemment concernant les relations linéaires dans le carré inférieur droit de la matrice. 
+La relation entre la variable cible et les autres variables du dataset ne semble pas apporter davantage d'information. 
+
+Au final, on constate la même chose qu'avec la matrice corrélation seule. 
 
 
 _Pairplot de la table des Mobilisations_ 
@@ -242,9 +245,8 @@ _Répartition du temps moyen d'intervention_
 On constate avec ces statistiques très simples que, en moyenne le temps d’intervention est quasi identique d’un mois sur l’autre et varie de 8.2 à  8.5%.
 L’analyse du graphique met en exergue une légère différence d’un mois sur l’autre. Un test statistique permettrait d’avoir une assise plus précise quant à ce constat. 
 Pour cela, nous allons procéder à un test anova. 
-L'ANOVA (Analyse de la variance) est une technique statistique utilisée pour analyser si les moyennes de trois groupes ou plus sont égales ou différentes dans le contexte de 
-plusieurs groupes ou conditions. C'est un outil précieux dans l'analyse des données pour répondre à des questions telles que "Y a-t-il une différence significative entre les groupes ?" 
-ou "Quel groupe est significativement différent des autres ?". 
+L'ANOVA permet d'analyser si les moyennes de trois groupes ou plus sont égales ou différentes dans le contexte de 
+plusieurs groupes ou conditions. C'est un outil précieux dans l'analyse des données pour répondre à la question suivante : "Y a-t-il une différence significative entre les groupes ?".
 
 Les résultats sont les suivants avec une p value à 5%: 
 
@@ -347,22 +349,23 @@ La répartition des points suit la distribution du tableau des statistiques desc
 ## Création de la base de travail 
 
 Il semble nécessaire de regrouper toutes les données dans un même dataset. On procède pour cela à un « inner join » des données par l’identifiant d’incident afin d’avoir une exhaustivité de l’information.   
-Afin de disposer de toutes les informations dans une même base de travail, nous allons procéder à la jointure des 2 datasets. 
-
 
 
 ![image](https://github.com/Ryma8905/Projet-datascientest/assets/156120862/b9ae9a40-d88b-4586-b005-8904822858d0)
 
 
 Comme observé précédemment, on constate qu’en moyenne la variable  _FirstPumpArriving_AttendanceTime_  est proche  la variable  _AttendanceTimeSeconds_.
-Nous allons privilégier l’utilisation de la variable _FirstPumpArriving_AttendanceTime_ afin de procéder à la résolution de la problématique. Nous verrons plus tard s’il y a lieu de tester 
-la variable issue de la table des Mobilisations. 
-Nous procéderons de la même façon pour le subset qui contient les coordonnées GPS. 
-Pour aller plus loin, étant donné que les dataframes contiennent des variables catégorielles notamment celle concernant le type d’intervention, on doit effectuer un encodage pour la représenter 
-en tant que variable numérique avec un encodage one-hot (binaire) afin que le modèle d’apprentissage automatique puisse prendre en compte les catégories dans les prédictions. 
-A mon sens il ne semble pas nécessaire de standardiser les coordonnées GPS étant donné qu’elles sont toutes localisées à Londres et sont dans une plage de valeur réduite. 
+Nous allons privilégier l’utilisation de la variable _FirstPumpArriving_AttendanceTime_ afin de procéder à la résolution de la problématique et supprimer la variable proxy issue de la table des Mobilisations. 
+
+Le choix de conserver la variable issue de la table des Incidents est dû au fait qu'elle issue du dataset duquel nous prenons le plus de variables. 
+
+
+Etant donné que les dataframes contiennent des variables catégorielles notamment celle concernant le type d’intervention, nous devons effectuer un encodage pour la représenter 
+en tant que variable numérique avec un encodage one-hot (binaire) afin que le modèles testés puissent prendre en compte les catégories dans les prédictions. 
+ 
 Pour ce qui est des informations sur le mois et l'année d'intervention, on peut également les encoder pour les rendre utilisables. Par exemple, on extrait le mois et l'année de ces variables 
-et on les ajoute comme caractéristiques distinctes. On peut également utiliser des techniques de codage cyclique pour les mois dans le cas où on voudrait exploiter la saisonnalité.
+et on les ajoute comme caractéristiques distinctes. 
+
 Au final, on peut supposer a priori (cela sera vérifié ultérieurement) que l'on aura un déficit d’information car nous sommes 
 obligés d'amputer la base de beaucoup de variables explicatives car elles ont trop de valeurs manquantes.  
 
@@ -371,6 +374,7 @@ obligés d'amputer la base de beaucoup de variables explicatives car elles ont t
 L'objectif de cette deuxième partie de rapport est d'offrir une analyse approfondie des résultats obtenus lors de la modélisation des temps d'intervention de la brigade des pompiers. Notre approche a englobé un processus rigoureux, débutant par un préprocessing des données et s'étendant jusqu'à l'utilisation de modèles sophistiqués de machine learning. Chaque étape a été étudiée pour garantir la robustesse et la fiabilité des résultats.
 
 Au début du processus de modélisation, sur les conseils du référent Datascientest, nous avons opté pour une approche prudente en testant des modèles naïfs afin d'établir une première compréhension du phénomène étudié. Ces modèles bien que délibérément simplistes, ont joué un rôle crucial en offrant une première perspective sur la dynamique des systèmes sous-jacents. Cette démarche visait à explorer différentes pistes et à identifier les variables clés* qui pourraient influencer le temps d’intervention des brigades de pompiers de Londres. Les modèles naïfs ont ainsi servi de boussole initiale, nous orientant vers les aspects les plus significatifs à approfondir et à intégrer dans des modèles plus sophistiqués par la suite. Cette phase exploratoire a contribué à jeter les bases d'une modélisation plus élaborée, guidant la sélection des variables à privilégier et permettant une meilleure compréhension des mécanismes sous-jacents.
+
 Les étapes pour nous conduire à la sélection du meilleur modèle sont les suivantes : 
 -	Entrainement de modèles naïfs pour ne conserver que les variables qui contribuent le plus au modèle 
 -	Réduction de la base aux variables utiles 
@@ -386,7 +390,8 @@ Incidents
 Mobilisations 
 -	Nombre de lignes : 2 227 677
 -	Nombre de colonnes : 19
-Ensuite, afin de pouvoir avoir une répartition géographique des interventions, nous avons éliminé toutes les lignes pour lesquelles la variable latitude n’était pas renseignée. Nous avons utilisé le dataset des incidents comme base de travail seulement filtré sur les heures non multiples de 60 et avons obtenu les résultats suivants : 
+
+Ensuite, afin de pouvoir avoir une répartition géographique des interventions, nous avons éliminé toutes les lignes pour lesquelles la variable latitude n’était pas renseignée. Nous avons utilisé le dataset des incidents comme base de travail seulement filtrée sur les heures non multiples de 60 et avons obtenu les résultats suivants : 
 -	Nombre de lignes : 726 790
 -	Nombre de colonnes : 38
 
@@ -424,7 +429,7 @@ Les régressions Lasso et Ridge permettent de prévenir le surajustement et d’
 
 -	La régression Lasso : elle intègre une pénalité de norme L1 ce qui peut conduire à une sélection des variables en faisant le split entre les variables qui ont une contribution nulle sur la prédiction du modèle et celles qui ont un impact significatif. 
 
--	La régression Ridge : elle intègre une pénalité de norme L2 qui a tendance à réduire l’impact des variables les moins importantes plutôt que de les éliminer complètement. Le modèle Ridge est particulièrement utile lorsque les variables explicatives sont fortement corrélées entre elles, car il permet de stabiliser les coefficients et d'éviter une sensibilité excessive aux fluctuations dans les données. Etant donné les résultats obtenus en partie , nous supposons à l’avance que ce modèle ne sera pas d’une grande efficacité. 
+-	La régression Ridge : elle intègre une pénalité de norme L2 qui a tendance à réduire l’impact des variables les moins importantes plutôt que de les éliminer complètement. Le modèle Ridge est particulièrement utile lorsque les variables explicatives sont fortement corrélées entre elles, car il permet de stabiliser les coefficients et d'éviter une sensibilité excessive aux fluctuations dans les données. 
 
 Les résultats obtenus sont les suivants :
 
@@ -451,7 +456,7 @@ Nous allons donc procéder à une optimisation approfondie des hyperparamètres,
 ![image](https://github.com/Ryma8905/Projet-datascientest/blob/ea498526e119cc45002d074e0740fe3fe493874b/R%C3%A9sultats_mod%C3%A8les/Gridsearch.png)
 
 
-On constate que les 3 modèles produisent peu ou prou les mêmes résultats. modèles linéaires sont ceux qui fournissent les meilleurs résultats compte tenu des postulats de départ. 
+On constate que les 3 modèles produisent peu ou prou les mêmes résultats. Les modèles linéaires sont ceux qui fournissent les meilleurs résultats compte tenu des postulats de départ. 
 Nous allons donc procéder à une optimisation bayésienne sur ces derniers, avec les variables sélectionnées.  
 
 
@@ -505,16 +510,14 @@ Mis en parallèle avec le graphique des features importances (plus parlant):
   - Cette variable a la magnitude SHAP la plus faible parmi toutes, mais elle reste significative. Cela pourrait indiquer que le nombre d'heures d'intervention (arrondi) a une influence moindre sur le temps d'intervention par rapport aux autres variables.
 
     
-On peut conclure en disant que la caractéristique qui contribue le plus au modèle qui permet de prédire le temps d’intervention est le temps entre le moment où l’alerte arrive à la caserne et le moment où les pompiers partent. En effet, il semble logique que la caractéristiques de temps de réponse influence considérablement le temps d’intervention.
+On peut conclure en disant que la caractéristique qui contribue le plus au modèle qui permet de prédire le temps d’intervention est le temps entre le moment où l’alerte arrive à la caserne et le moment où les pompiers partent. En effet, il semble logique que la caractéristique de temps de réponse influence considérablement le temps d’intervention.
 
 Vient ensuite le nombre de pompes utilisées. En effet, plus il y a de pompes près du lieu d’incident,
-plus grandes seront les chances de diminuer le temps d’intervention. Il y va de même pour le nombre de camions en service.
+plus grandes seront les chances de diminuer le temps d’intervention. 
 
-Dans une moindre mesure, le nombre de stations contactées contribue également en ce sens que plus de stations seront contactées, plus grandes seront les chances de diminuer le temps d’intervention.
+Dans une moindre mesure, le nombre de stations intervenant contribue également en ce sens que plus de stations seront contactées, plus grandes seront les chances de diminuer le temps d’intervention.
 
-On peut également penser que le fait que la propriété soit non résidentielle fait qu’elle est située en centre-ville et qu’elle profite d’un plus grand maillage des casernes de pompiers.
-
-Idem pour les quartiers. Parmi les quartiers conservés, la plupart sont des quartiers centraux autour de la Tamise à l’exception de 3 qui sont à la périphérie et vastes.
+Parmi les quartiers conservés, la plupart sont des quartiers centraux autour de la Tamise à l’exception de 3 qui sont à la périphérie et vastes. Les quartiers les plus centraux sont ceux qui contribuent le plus. On peut penser qu'une localisation de l'incident en centre-ville contribue plus à la prédictabilité de la variable cible que les quartiers périphériques. 
 
 
 ![image](https://github.com/Ryma8905/Projet-datascientest/blob/ab31f3784a18f9c05f3442ae3ab9d5edacb848d6/R%C3%A9sultats_mod%C3%A8les/feature%20importances%202%20.png)
@@ -525,7 +528,7 @@ Pour faire écho à ce qui a été dit précédemment sur la variable _TurnOutTi
 
 Une visualisation des Shap values pour un échantillon d'incidents permet de comprendre plus en détail le phénomène : 
 
-![image](https://github.com/Ryma8905/Projet-datascientest/blob/23abc160a0ce43d6b2ae91b77419087b52f67902/Temps%20moyen%20d'intervention/feature%20importances%20sample.png)
+![image](https://github.com/Ryma8905/Projet-datascientest/blob/7203c3b991f10007ec726e43b018aab97936a4cb/R%C3%A9sultats_mod%C3%A8les/shap%20sample.png)
 
 
 On constate que sur 5 échantillons, la variable _TurnOutTime_ contribue le plus en valeur absolue. Idem pour le nombre de pompes. Cela conforte la conclusion faite au niveau macro. En fait, toutes les autres variables se comportent comme dans le graphique précédent. 
