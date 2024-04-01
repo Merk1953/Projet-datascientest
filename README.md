@@ -312,8 +312,7 @@ these fires involved casualties or rescues, or five or more pumping appliances a
 ![image](https://github.com/Ryma8905/Projet-datascientest/assets/156120862/462a2c09-5cec-4f32-a715-aec06fcc4db4)
 
 
-On a grosso modo un temps d’intervention moyen identique excepté pour le Special Operations Room. 
-Un test anova peut nous permettre de valider ou d’invalider statistiquement notre constat. 
+Lorsque l'on croise le type d'incident avec le temps d'intervention, on obtient le graphe suivant :
 
 Les résultats sont les suivants avec une p value à 5%: 
 f statistic: 2045.138681298415 p_value: 0.0
