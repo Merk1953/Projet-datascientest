@@ -24,13 +24,13 @@ Deux sets de données sont mis à notre disposition :
       Pour information, il y a une colonne supplémentaire dans la table des Incidents (39 colonnes) vs les métadonnées (38 noms de variables). 
       La dernière colonne a donc été supprimée car elle ne semblait correspondre à rien dans les métadonnées.  
 
-**La table contient 2 227 677 entrées.**
+**La table contient 1 602 834 entrées.**
 
   2.	Données sur les mobilisations : Le deuxième jeu de données fournit des informations sur chaque camion de pompiers envoyé sur les lieux d’un incident depuis janvier 2009. Il inclut notamment
       des détails sur l’appareil mobilisé, son lieu de déploiement et les heures d’arrivées sur les lieux de l’incident. Ces données sont tout aussi essentielles pour comprendre et évaluer l’efficacité
     	du déploiement des ressources en fonction de la nature et de la localisation des incidents.
     	
-**La table contient : 1 602 834 entrées.**
+**La table contient : 2 227 677 entrées.**
 
 ## Exploration des données 
 ### Analyse des champs 
@@ -387,7 +387,7 @@ Incidents
 -	Nombre de lignes : 1 287 593
 -	Nombre de colonnes : 21
 Mobilisations 
--	Nombre de lignes : 2 227 677
+-	Nombre de lignes : 2 156 847
 -	Nombre de colonnes : 19
 
 Ensuite, afin de pouvoir avoir une répartition géographique des interventions, nous avons éliminé toutes les lignes pour lesquelles la variable latitude n’était pas renseignée. Nous avons utilisé le dataset des incidents comme base de travail seulement filtrée sur les heures non multiples de 60 et avons obtenu les résultats suivants : 
