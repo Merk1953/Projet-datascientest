@@ -176,7 +176,7 @@ relation de type aX.
 Au final, il semble que toutes les variables qui incluent la notion de pompe à incendie présentent une forte corrélation entre elles. 
 
 Par ailleurs, on constate une corrélation nulle dans le reste du carré ce qui indique une absence de relation linéaire entre les variables. On peut donc postuler que ces variables sont indépendantes 
-les unes des autres. La question se pose maintenant sur la sélection des variables, i.e. si nous allons choisir seulement les variables qui ont une corrélation significative avec la variable cible. 
+les unes des autres. 
 
 
 _Corrélation entre les variables quantitatives de la table des Mobilisations_
