@@ -554,7 +554,7 @@ C’est finalement un modèle linéaire (Lasso) qui a été sélectionné et a m
 
 Lors de l'analyse de données, il est courant de rencontrer des ensembles de données incomplets, incohérents ou mal renseignés. Ces données peuvent grandement affecter la performance et la fiabilité des modèles d'apprentissage automatique, rendant ainsi les prédictions peu parlantes ou peu fiables. Face à de telles situations, plusieurs pistes de réflexion peuvent être explorées pour améliorer la qualité des données et, par conséquent, des modèles.
 
-En tant que producteur de données, la qualité de l'information que vous fournissez est essentielle pour garantir la pertinence et la fiabilité de vos services. Face à des données de mauvaise qualité, plusieurs pistes de réflexion peuvent être envisagées :
+En tant que producteur de données, la qualité de l'information qui est fournie est essentielle pour garantir la pertinence et la fiabilité des données. De fait, face à des données de mauvaise qualité, plusieurs pistes de réflexion peuvent être envisagées :
 
 **1. Évaluation et Transparence** : Fournir une évaluation transparente de la qualité des données, en identifiant les lacunes et les erreurs, afin de maintenir la confiance des utilisateurs.
 
